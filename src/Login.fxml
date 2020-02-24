@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -26,5 +27,15 @@
             <Insets left="10.0" />
          </padding>
       </Label>
+      <Button layoutX="204.0" layoutY="283.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="login">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="300.0" layoutY="283.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Sign in as Guest">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
