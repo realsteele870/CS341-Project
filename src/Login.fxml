@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="254.0" layoutY="57.0" text="Login">
+      <Label layoutX="252.0" layoutY="70.0" text="Login" textFill="WHITE">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <TextField layoutX="225.0" layoutY="136.0" />
-      <PasswordField layoutX="225.0" layoutY="187.0" />
-      <Label layoutX="401.0" layoutY="140.0" text="Username" />
-      <Label layoutX="402.0" layoutY="192.0" text="Password" />
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="213.0" text="NASA" textFill="#1b15c3" textOverrun="CLIP" AnchorPane.topAnchor="14.0">
+      <TextField layoutX="225.0" layoutY="158.0" />
+      <PasswordField layoutX="225.0" layoutY="222.0" />
+      <Label layoutX="224.0" layoutY="130.0" text="Username" textFill="WHITE" />
+      <Label layoutX="225.0" layoutY="200.0" text="Password" textFill="WHITE" />
+      <Label layoutX="-1.0" layoutY="-2.0" prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: white; -fx-text-alignment: center;" text="nasa" textFill="#5481f2" textOverrun="CLIP" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0">
          <font>
             <Font name="DIN Alternate Bold" size="33.0" />
          </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
    </children>
 </AnchorPane>
