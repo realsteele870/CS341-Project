@@ -11,6 +11,7 @@ public class Start extends Application{
 	private Stage loginPage;
 
 	public static void main(String[] args) {
+		Database db = new Database();
 		launch(args);
 
 	}
@@ -23,7 +24,8 @@ public class Start extends Application{
 		loginPage.setTitle("Login");
 		//loginPage.setMaximized(true);
 		loginPage.setScene(scene);
-		loginPage.show();	
-		
+		loginPage.show();		
 	}
+	
+	
 }
