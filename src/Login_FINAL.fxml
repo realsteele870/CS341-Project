@@ -5,15 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3a62f0#3a62f0 #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: white;" text="nasa" textFill="#5481f2" BorderPane.alignment="CENTER">
+      <Label alignment="TOP_LEFT" prefHeight="56.0" prefWidth="5000.0" style="-fx-background-color: white;" text="nasa" textFill="#5481f2" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="5.0" left="10.0" />
          </padding>
@@ -23,37 +23,52 @@
       </Label>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="251.0" layoutY="14.0" prefHeight="52.0" prefWidth="98.0" text="Login" textFill="WHITE">
+            <Label alignment="TOP_CENTER" prefHeight="52.0" prefWidth="98.0" text="Login" textFill="WHITE">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
-            <TextField layoutX="191.0" layoutY="105.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter username" />
-            <PasswordField layoutX="191.0" layoutY="155.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter password" />
-            <Label layoutX="191.0" layoutY="88.0" text="Username" textFill="WHITE">
+            <Label text="Username" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="192.0" layoutY="138.0" text="Password" textFill="WHITE">
+            <TextField maxWidth="500.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter username">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Password" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="190.0" layoutY="198.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Login">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="275.0" layoutY="198.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" text="Sign in as Guest">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Text layoutX="248.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password" underline="true" />
+            <PasswordField maxWidth="500.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter password">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Login">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" text="Sign in as Guest">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password" underline="true" />
          </children>
-      </AnchorPane>
+      </VBox>
    </center>
 </BorderPane>

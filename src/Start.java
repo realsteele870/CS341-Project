@@ -18,11 +18,11 @@ public class Start extends Application{
 	
 	public void start(Stage loginStage) throws IOException, SQLException {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("Login_FINAL.fxml"));
 		Scene scene = new Scene(root);
 		loginPage = loginStage;
 		loginPage.setTitle("Login");
-		//loginPage.setMaximized(true);
+		loginPage.setMaximized(true);
 		loginPage.setScene(scene);
 		loginPage.show();		
 	}
