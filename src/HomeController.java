@@ -68,5 +68,6 @@ public class HomeController implements Initializable {
 		window.setScene(scene2);
 		window.setTitle("Login");
 		window.show();
+		Start.user = null;
 	}
 }
