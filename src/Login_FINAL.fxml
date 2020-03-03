@@ -57,7 +57,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" text="Sign in as Guest">
+                  <Button fx:id="guestBtn" mnemonicParsing="false" onAction="#guestLogin" prefHeight="30.0" prefWidth="134.0" text="Sign in as Guest">
                      <font>
                         <Font size="14.0" />
                      </font>
