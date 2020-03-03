@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
 	@FXML
+	private Button createUserBtn;
+	@FXML
 	private Button logoutBtn;
 	@FXML
 	private Button createEvntBtn;
@@ -35,16 +37,28 @@ public class HomeController implements Initializable {
 		}
 
 	}
-
+	
 	@FXML
-	private void volunteer(ActionEvent event) throws IOException {
-		Parent menuParent = FXMLLoader.load(getClass().getResource("Volunteer.fxml"));
-		Scene scene = logoutBtn.getScene(); // use button to get current scene
+	private void createUser(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("CreateUser.fxml"));
+		Scene scene = createUserBtn.getScene(); // use button to get current scene
 		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
 																					// dimensions
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene2);
-		window.setTitle("Create Event");
+		window.setTitle("Create User");
+		window.show();
+	}
+
+	@FXML
+	private void volunteer(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Volunteer.fxml"));
+		Scene scene = volunteerBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Volunteer");
 		window.show();
 
 	}
@@ -52,12 +66,12 @@ public class HomeController implements Initializable {
 	@FXML
 	private void viewEvent(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("ViewEvents.fxml"));
-		Scene scene = logoutBtn.getScene(); // use button to get current scene
+		Scene scene = viewEventBtn.getScene(); // use button to get current scene
 		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
 																					// dimensions
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene2);
-		window.setTitle("Create Event");
+		window.setTitle("View Events");
 		window.show();
 
 	}
@@ -65,7 +79,7 @@ public class HomeController implements Initializable {
 	@FXML
 	private void createEvent(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("CreateEvent.fxml"));
-		Scene scene = logoutBtn.getScene(); // use button to get current scene
+		Scene scene = createEvntBtn.getScene(); // use button to get current scene
 		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
 																					// dimensions
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
