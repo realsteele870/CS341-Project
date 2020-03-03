@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -75,6 +77,16 @@ public class CreateEventController implements Initializable {
 		int startHour = toMilitaryTimeStart(timeStart);
 		int endHour = toMilitaryTimeEnd(timeEnd);
 
+	}
+	
+	private int getNextId() throws SQLException {
+		Start.db.connect();
+		String query = "SELECT Max(EventId) " + 
+				"FROM Event";
+		ResultSet results = Start.db.runQuery(query);
+		int max = results.getInt(1);
+		Start.db.disconnect();
+		return max + 1; 
 	}
 
 	public int toMilitaryTimeStart(String time) {
