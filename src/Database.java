@@ -1,9 +1,12 @@
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.sqlite.SQLiteDataSource;
 
 public class Database {
+
+	public Connection connection;
 
 	public Database() {
         SQLiteDataSource ds = null;
@@ -22,5 +25,13 @@ public class Database {
             e.printStackTrace();
             System.exit( 0 );
         }
+	}
+	
+	public void connect() throws SQLException {
+		connection = DriverManager.getConnection("jdbc:sqlite:nasa.db");
+	}
+	
+	public void disconnect() throws SQLException {
+		connection.close();
 	}
 }

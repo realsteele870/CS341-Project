@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.application.Application;
@@ -8,15 +10,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class Start extends Application {
 	private Stage loginPage;
 	@FXML private Button loginBtn;
+	@FXML private TextField usernameField;
+	@FXML private PasswordField passwordField;
+	private static Database db;
+	public static String user;
 
 	public static void main(String[] args) {
-		Database db = new Database();
+		db = new Database();
 		launch(args);
 
 	}
@@ -33,28 +45,47 @@ public class Start extends Application {
 
 	}
 
-	/*public void handleLogin() throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
-		Scene scene = new Scene(root);
-		Stage homePage;
-		homePage = new Stage();
-		homePage.setTitle("Home");
-		homePage.setMaximized(true);
-		homePage.setScene(scene);
-		homePage.showAndWait();
-		// loginPage.close();
-
-	}*/
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
-	
-		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
-		Scene scene = loginBtn.getScene(); // use button to get current scene
-		Scene scene2 = new Scene(menuParent,scene.getWidth(),scene.getHeight()); // create new scene with last scenes dimensions
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setScene(scene2);
-		window.setTitle("Home");
-		window.show();
+		db.connect();
+
+		String userName = usernameField.getText(); // get users entered username
+		String userPass = passwordField.getText(); // get users entered password
+		// query to get password of user 
+		String query = "SELECT Password FROM Users WHERE UserName = ?";
+		PreparedStatement stmt = db.connection.prepareStatement(query);
+		stmt.setString(1, userName);
+		ResultSet result = stmt.executeQuery();
+		
+		if(result.isClosed()) {
+			errorAlert("Login Error", "Username does not exist.");
+			usernameField.clear();
+			passwordField.clear();
+			db.disconnect();
+		}
+		else {
+		// get database query result
+		String pass = result.getString("Password");
+		
+		// if user password equals database password
+		if(pass.equals(userPass)) {
+			Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
+			Scene scene = loginBtn.getScene(); // use button to get current scene
+			Scene scene2 = new Scene(menuParent,scene.getWidth(),scene.getHeight()); // create new scene with last scenes dimensions
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			window.setScene(scene2);
+			window.setTitle("Home");
+			window.show();
+		}
+		}
 	}
+	
+	// method to alert user what the error is 
+		private void errorAlert(String header, String content) {
+			Alert errorAlert = new Alert(AlertType.ERROR);
+			errorAlert.setHeaderText(header);
+			errorAlert.setContentText(content);
+			errorAlert.showAndWait();
+		}
 
 }
