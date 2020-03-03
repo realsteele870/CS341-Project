@@ -20,6 +20,6 @@ public class VolunteerController implements Initializable {
 	@FXML
 	private void volunteer(ActionEvent event) throws IOException {
 		// get associated event from database and increment volunteers filled
-		
+		// shit
 	}
 }
