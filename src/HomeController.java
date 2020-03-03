@@ -10,18 +10,30 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class HomeController implements Initializable{
-	@FXML private Button logoutBtn;
-	@FXML private Button createEvntBtn;
-	@FXML private Button viewEventBtn;
-	@FXML private Button volunteerBtn;
-	
+public class HomeController implements Initializable {
+	@FXML
+	private Button logoutBtn;
+	@FXML
+	private Button createEvntBtn;
+	@FXML
+	private Button viewEventBtn;
+	@FXML
+	private Button volunteerBtn;
+	@FXML
+	private Label loggedInAs;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		if (Start.user == null) {
+			loggedInAs.setText("Guest");
+		} else {
+			loggedInAs.setText(Start.user);
+		}
+
 	}
 
 	@FXML
@@ -45,7 +57,7 @@ public class HomeController implements Initializable{
 		window.setTitle("Create Event");
 		window.show();
 	}
-	
+
 	@FXML
 	private void logOut(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Login_FINAL.fxml"));

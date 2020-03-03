@@ -102,5 +102,6 @@ public class Start extends Application {
 		window.setScene(scene2);
 		window.setTitle("Home");
 		window.show();
+		user = null;
 	}
 }

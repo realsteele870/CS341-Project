@@ -52,4 +52,14 @@
          </children>
       </VBox>
    </left>
+   <right>
+      <Label fx:id="loggedInAs" text="Label" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="550.0" right="100.0" />
+         </BorderPane.margin>
+         <graphic>
+            <Label text="Singed in as:" />
+         </graphic>
+      </Label>
+   </right>
 </BorderPane>
