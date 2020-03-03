@@ -29,6 +29,7 @@ public class Start extends Application {
 	private PasswordField passwordField;
 	private static Database db;
 	public static String user;
+	public static String userType;
 
 	public static void main(String[] args) {
 		db = new Database();
@@ -55,7 +56,7 @@ public class Start extends Application {
 		String userName = usernameField.getText(); // get users entered username
 		String userPass = passwordField.getText(); // get users entered password
 		// query to get password of user
-		String query = "SELECT Password, FirstName FROM Users WHERE UserName = ?";
+		String query = "SELECT Password, FirstName, UserType FROM Users WHERE UserName = ?";
 		PreparedStatement stmt = db.connection.prepareStatement(query);
 		stmt.setString(1, userName);
 		ResultSet result = stmt.executeQuery();
@@ -69,6 +70,7 @@ public class Start extends Application {
 			// get database query result
 			String pass = result.getString("Password");
 			user = result.getString("FirstName");
+			userType = result.getString("UserType");
 
 			// if user password equals database password
 			if (pass.equals(userPass)) {
