@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3a62f0#3a62f0 #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Start">
    <top>
-      <Label alignment="TOP_LEFT" prefHeight="56.0" prefWidth="5000.0" style="-fx-background-color: white;" text="nasa" textFill="#5481f2" BorderPane.alignment="CENTER">
+      <Label alignment="TOP_LEFT" prefHeight="56.0" prefWidth="5000.0" style="-fx-background-color: white;" textFill="#5481f2" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="5.0" left="10.0" />
          </padding>
