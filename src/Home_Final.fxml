@@ -30,42 +30,46 @@
    <left>
       <VBox alignment="CENTER" prefHeight="270.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="createEvntBtn1" mnemonicParsing="false" onAction="#createEvent" prefHeight="35.0" prefWidth="125.0" text="Create User">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
           <Button fx:id="createEvntBtn" mnemonicParsing="false" onAction="#createEvent" prefHeight="35.0" prefWidth="125.0" text="Create Event">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="viewEventBtn" mnemonicParsing="false" onAction="#viewEvent" prefHeight="35.0" prefWidth="125.0" text="View Events">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="volunteerBtn" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin></Button>
             <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logOut" prefHeight="35.0" prefWidth="125.0" text="Log Out">
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Label fx:id="loggedInAs" text="Label" textFill="WHITE">
+               <graphic>
+                  <Label text="Welcome" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </graphic>
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
    </left>
-   <right>
-      <Label fx:id="loggedInAs" text="Label" textFill="WHITE" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="100.0" right="100.0" />
-         </BorderPane.margin>
-         <graphic>
-            <Label text="Singed in as:" textFill="WHITE">
-               <font>
-                  <Font size="19.0" />
-               </font></Label>
-         </graphic>
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-   </right>
 </BorderPane>
