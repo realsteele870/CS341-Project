@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,7 +23,16 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="313.0" prefWidth="600.0" style="-fx-background-color: white;" />
+            <HBox prefHeight="313.0" prefWidth="600.0" style="-fx-background-color: white;">
+               <children>
+                  <ButtonBar prefHeight="314.0" prefWidth="419.0">
+                     <buttons>
+                      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" text="Create Event" />
+                        <Button mnemonicParsing="false" prefHeight="26.0" text="View Events" />
+                        <Button mnemonicParsing="false" text="volunteer" />
+                     </buttons>
+                  </ButtonBar>
+               </children></HBox>
          </children>
       </VBox>
    </center>
