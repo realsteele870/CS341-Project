@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -67,16 +68,41 @@ public class CreateEventController implements Initializable {
 	}
 
 	@FXML
-	private void createEvent(ActionEvent event) {
+	private void createEvent(ActionEvent event) throws SQLException {
 		String name = nameField.getText();
 		String desc = descArea.getText();
 		String date = dateField.getEditor().getText();
 		String timeStart = timeStrtField.getText();
 		String timeEnd = timeEndField.getText();
-		String vols = volunteersField.getText();
+		int vols = Integer.parseInt(volunteersField.getText());
 		int startHour = toMilitaryTimeStart(timeStart);
 		int endHour = toMilitaryTimeEnd(timeEnd);
-
+		
+		int eventId = getNextId();
+		Start.db.connect();
+		String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
+		stmt.setInt(1,eventId);
+		stmt.setString(2, name);
+		stmt.setString(3, desc);
+		stmt.setString(4, date);
+		stmt.setInt(5, startHour);
+		stmt.setInt(6, endHour);
+		stmt.setInt(7, vols);
+		stmt.setInt(8, 0); // initial volunteers filled is 0
+		stmt.executeUpdate();
+		Start.db.disconnect();
+		
+		nameField.clear();
+		descArea.clear();
+		dateField.getEditor().clear();
+		timeStrtField.clear();
+		timeEndField.clear();
+		volunteersField.clear();
+		startAmRBtn.setSelected(false);
+		startPmRBtn.setSelected(false);
+		endAmRBtn.setSelected(false);
+		endPmRBtn.setSelected(false);
 	}
 	
 	private int getNextId() throws SQLException {
