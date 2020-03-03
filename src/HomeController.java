@@ -37,12 +37,28 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	private void volunteer(ActionEvent event) {
+	private void volunteer(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Volunteer.fxml"));
+		Scene scene = logoutBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Create Event");
+		window.show();
 
 	}
 
 	@FXML
-	private void viewEvent(ActionEvent event) {
+	private void viewEvent(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("ViewEvents.fxml"));
+		Scene scene = logoutBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Create Event");
+		window.show();
 
 	}
 
