@@ -53,13 +53,19 @@
       </VBox>
    </left>
    <right>
-      <Label fx:id="loggedInAs" text="Label" BorderPane.alignment="CENTER">
+      <Label fx:id="loggedInAs" text="Label" textFill="WHITE" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="550.0" right="100.0" />
+            <Insets bottom="100.0" right="100.0" />
          </BorderPane.margin>
          <graphic>
-            <Label text="Singed in as:" />
+            <Label text="Singed in as:" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
          </graphic>
+         <font>
+            <Font size="19.0" />
+         </font>
       </Label>
    </right>
 </BorderPane>
