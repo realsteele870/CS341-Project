@@ -35,7 +35,11 @@ public class HomeController implements Initializable {
 		} else {
 			loggedInAs.setText(Start.user);
 		}
-
+		if(!Start.userType.equals("Administrator")) {
+			createUserBtn.setDisable(true);
+			createUserBtn.setVisible(false);
+			
+		}
 	}
 	
 	@FXML
