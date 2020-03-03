@@ -71,6 +71,7 @@
               <rowConstraints>
                 <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -94,7 +95,7 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Event Date:" textFill="WHITE" GridPane.rowIndex="2">
+                  <Label text="Event Date:" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -102,8 +103,8 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <DatePicker fx:id="dateField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Time Start:" textFill="WHITE" GridPane.rowIndex="3">
+                  <DatePicker fx:id="dateField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Time Start:" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -111,7 +112,7 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
                         <TextField fx:id="timeStrtField" />
                         <RadioButton fx:id="startAmRBtn" mnemonicParsing="false" onAction="#switchRadioStart" text="AM" textFill="WHITE">
@@ -126,7 +127,7 @@
                         </RadioButton>
                      </children>
                   </HBox>
-                  <Label text="Time End:" textFill="WHITE" GridPane.rowIndex="4">
+                  <Label text="Time End:" textFill="WHITE" GridPane.rowIndex="5">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -134,7 +135,7 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <TextField fx:id="timeEndField" />
                         <RadioButton fx:id="endAmRBtn" mnemonicParsing="false" onAction="#switchRadioEnd" text="AM" textFill="WHITE">
@@ -149,7 +150,7 @@
                         </RadioButton>
                      </children>
                   </HBox>
-                  <Label text="Volunteers Needed:" textFill="WHITE" GridPane.rowIndex="5">
+                  <Label text="Volunteers Needed:" textFill="WHITE" GridPane.rowIndex="6">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -157,8 +158,17 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="volunteersField" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="volunteersField" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <TextArea fx:id="descArea" maxWidth="250.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Event Location:" textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="locationField" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <Button fx:id="createEventBtn" mnemonicParsing="false" onAction="#createEvent" prefHeight="35.0" prefWidth="125.0" text="Create Event">

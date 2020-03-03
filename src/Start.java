@@ -71,6 +71,7 @@ public class Start extends Application {
 			String pass = result.getString("Password");
 			user = result.getString("FirstName");
 			userType = result.getString("UserType");
+			db.disconnect();
 
 			// if user password equals database password
 			if (pass.equals(userPass)) {
