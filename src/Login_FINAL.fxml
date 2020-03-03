@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField maxWidth="500.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter username">
+            <TextField fx:id="usernameField" maxWidth="500.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter username">
                <VBox.margin>
                   <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
                </VBox.margin>
@@ -45,14 +45,14 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <PasswordField maxWidth="500.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter password">
+            <PasswordField fx:id="passwordField" maxWidth="500.0" prefHeight="27.0" prefWidth="218.0" promptText="Enter password">
                <VBox.margin>
                   <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
                </VBox.margin>
             </PasswordField>
             <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="70.0" text="Login">
+                  <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="70.0" text="Login">
                      <font>
                         <Font size="14.0" />
                      </font>
