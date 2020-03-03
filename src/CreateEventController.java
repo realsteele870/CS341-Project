@@ -48,6 +48,8 @@ public class CreateEventController implements Initializable {
 	private RadioButton endAmRBtn;
 	@FXML
 	private RadioButton endPmRBtn;
+	@FXML
+	private TextField locationField;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -69,8 +71,10 @@ public class CreateEventController implements Initializable {
 
 	@FXML
 	private void createEvent(ActionEvent event) throws SQLException {
+		// get info from fields
 		String name = nameField.getText();
 		String desc = descArea.getText();
+		String loc = locationField.getText();
 		String date = dateField.getEditor().getText();
 		String timeStart = timeStrtField.getText();
 		String timeEnd = timeEndField.getText();
@@ -78,23 +82,27 @@ public class CreateEventController implements Initializable {
 		int startHour = toMilitaryTimeStart(timeStart);
 		int endHour = toMilitaryTimeEnd(timeEnd);
 		
+		// enter event into database
 		int eventId = getNextId();
 		Start.db.connect();
-		String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
-		stmt.setInt(1,eventId);
+		stmt.setInt(1, eventId);
 		stmt.setString(2, name);
 		stmt.setString(3, desc);
-		stmt.setString(4, date);
-		stmt.setInt(5, startHour);
-		stmt.setInt(6, endHour);
-		stmt.setInt(7, vols);
-		stmt.setInt(8, 0); // initial volunteers filled is 0
+		stmt.setString(4, loc);
+		stmt.setString(5, date);
+		stmt.setInt(6, startHour);
+		stmt.setInt(7, endHour);
+		stmt.setInt(8, vols);
+		stmt.setInt(9, 0); // initial volunteers filled is 0
 		stmt.executeUpdate();
 		Start.db.disconnect();
-		
+
+		// clear fields
 		nameField.clear();
 		descArea.clear();
+		locationField.clear();
 		dateField.getEditor().clear();
 		timeStrtField.clear();
 		timeEndField.clear();
@@ -104,15 +112,14 @@ public class CreateEventController implements Initializable {
 		endAmRBtn.setSelected(false);
 		endPmRBtn.setSelected(false);
 	}
-	
+
 	private int getNextId() throws SQLException {
 		Start.db.connect();
-		String query = "SELECT Max(EventId) " + 
-				"FROM Event";
+		String query = "SELECT Max(EventId) " + "FROM Event";
 		ResultSet results = Start.db.runQuery(query);
 		int max = results.getInt(1);
 		Start.db.disconnect();
-		return max + 1; 
+		return max + 1;
 	}
 
 	public int toMilitaryTimeStart(String time) {
