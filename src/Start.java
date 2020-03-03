@@ -27,7 +27,7 @@ public class Start extends Application {
 	private TextField usernameField;
 	@FXML
 	private PasswordField passwordField;
-	private static Database db;
+	public static Database db;
 	public static String user;
 	public static String userType;
 
