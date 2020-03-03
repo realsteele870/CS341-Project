@@ -27,12 +27,6 @@ public class Start extends Application {
 	private TextField usernameField;
 	@FXML
 	private PasswordField passwordField;
-	@FXML
-	private Button eventBtn;
-	@FXML
-	private Button volenteerBtn;
-	@FXML
-	private Button viewEventBtn;
 	private static Database db;
 	public static String user;
 
@@ -108,20 +102,5 @@ public class Start extends Application {
 		window.setScene(scene2);
 		window.setTitle("Home");
 		window.show();
-	}
-
-	@FXML
-	private void volunteer(ActionEvent event) {
-
-	}
-
-	@FXML
-	private void viewEvent(ActionEvent event) {
-
-	}
-
-	@FXML
-	private void createEvent(ActionEvent event) {
-
 	}
 }

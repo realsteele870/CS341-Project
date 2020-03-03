@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="783.0" style="-fx-background-color: #3a62f0#3a62f0 #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="783.0" style="-fx-background-color: #3a62f0#3a62f0 #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateEventController">
    <top>
       <Label alignment="TOP_LEFT" prefHeight="56.0" prefWidth="5000.0" style="-fx-background-color: white;" textFill="#5481f2" BorderPane.alignment="CENTER">
          <padding>
@@ -30,21 +30,16 @@
    <left>
       <VBox alignment="CENTER" prefHeight="270.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
-          <Button fx:id="createEvntBtn" mnemonicParsing="false" onAction="#createEvent" prefHeight="35.0" prefWidth="125.0" text="Create Event">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="View Events">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="viewEventBtn" mnemonicParsing="false" onAction="#viewEvent" prefHeight="35.0" prefWidth="125.0" text="View Events">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="volunteerBtn" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Volunteer">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin></Button>
-            <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logOut" prefHeight="35.0" prefWidth="125.0" text="Log Out">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Home">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
