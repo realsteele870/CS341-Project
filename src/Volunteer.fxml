@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="783.0" style="-fx-background-color: #3a62f0#3a62f0 #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateEventController">
+   <top>
+      <Label alignment="TOP_LEFT" prefHeight="56.0" prefWidth="5000.0" style="-fx-background-color: white;" textFill="#5481f2" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="5.0" left="10.0" />
+         </padding>
+         <font>
+            <Font name="DIN Alternate Bold" size="41.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+   </top>
+   <left>
+      <VBox prefHeight="412.0" prefWidth="841.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="783.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="137.0" text="label">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="783.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="137.0" text="label">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="65.0" prefHeight="55.0" prefWidth="783.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="137.0" text="label">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
