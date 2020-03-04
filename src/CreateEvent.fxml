@@ -38,11 +38,6 @@
    <left>
       <VBox alignment="CENTER" prefHeight="270.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="viewEventBtn" mnemonicParsing="false" onAction="#viewEvent" prefHeight="35.0" prefWidth="125.0" text="View Events">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Button>
             <Button fx:id="volunteerBtn" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer">
                <VBox.margin>
                   <Insets bottom="20.0" />
