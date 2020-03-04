@@ -13,6 +13,7 @@ public class Event {
 	int vol_needed;
 	int vol_filled;
 	public Event(int id, String name, String description, String date, String location, int time_S, int time_E, int vol_needed, int vol_filled) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.date = date;
@@ -21,6 +22,9 @@ public class Event {
 		this.time_end   = time_E;
 		this.vol_needed = vol_needed;
 		this.vol_filled = vol_filled;
+	}
+	int getId() {
+		return this.id;
 	}
 	String getName() {
 		return this.name;
@@ -53,10 +57,10 @@ public class Event {
 		this.time_start = time;
 	}
 	int getTimeEnd() {
-		return this.time_start;
+		return this.time_end;
 	}
 	void setTimeEnd(int time) {
-		this.time_start = time;
+		this.time_end = time;
 	}
 	int getVolNeeded() {
 		return this.vol_needed;

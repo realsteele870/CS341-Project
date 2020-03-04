@@ -34,7 +34,7 @@
    <left>
       <VBox alignment="CENTER" prefHeight="270.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Home">
+            <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#home" prefHeight="35.0" prefWidth="125.0" text="Home">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
@@ -103,7 +103,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Volunteer" GridPane.rowIndex="6" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer" GridPane.rowIndex="6" />
             <Label fx:id="dateLbl" layoutX="148.0" layoutY="145.0" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
@@ -120,6 +120,9 @@
                </font>
             </Label>
          </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
       </GridPane>
    </right>
    <center>

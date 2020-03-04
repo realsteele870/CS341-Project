@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -8,13 +9,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class VolunteerController implements Initializable {
 	@FXML
@@ -29,6 +35,7 @@ public class VolunteerController implements Initializable {
 	@FXML private Label timeLbl;
 	@FXML private Label volLbl;
 	@FXML private GridPane eventDetailsGrid;
+	@FXML private Button homeBtn;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -121,6 +128,29 @@ public class VolunteerController implements Initializable {
 	public void volunteer(ActionEvent event) throws SQLException {
 		Start.db.connect();
 		
+		String query = "UPDATE Event SET VolFilled = VolFilled + 1 "
+				+ "WHERE EventId = ?";
+		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
+		stmt.setInt(1, events.get(index).getId());
+		stmt.executeUpdate();
+		Start.db.disconnect();
 		
+		// repopulate events
+		events.clear();
+		eventNameList.getItems().clear();
+		initEvents();
+		showEventDetails();
+	}
+	
+	@FXML
+	private void home(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
+		Scene scene = homeBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Home");
+		window.show();
 	}
 }
