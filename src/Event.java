@@ -3,23 +3,24 @@ import java.text.SimpleDateFormat;
 
 
 public class Event {
+	int id;
 	String name;
 	String description;
-	SimpleDateFormat date;
-	String address;
+	String date;
+	String location;
 	int time_start;
 	int time_end;
 	int vol_needed;
 	int vol_filled;
-	public Event(String name, String description, String date, String address, int time_S, int time_E, int vol_needed ) {
+	public Event(int id, String name, String description, String date, String location, int time_S, int time_E, int vol_needed, int vol_filled) {
 		this.name = name;
 		this.description = description;
-		//this.date = new Date();
-		this.address = address;
+		this.date = date;
+		this.location = location;
 		this.time_start = time_S;
 		this.time_end   = time_E;
 		this.vol_needed = vol_needed;
-		this.vol_filled = 0;
+		this.vol_filled = vol_filled;
 	}
 	String getName() {
 		return this.name;
@@ -34,16 +35,16 @@ public class Event {
 		this.description = description;
 	}
 	String getDate() {
-		return this.date.toString();
+		return this.date;
 	}
 	void setDate(String date) {
-		//this.date = date;
+		this.date = date;
 	}
 	String getAddress() {
-		return this.address;
+		return this.location;
 	}
 	void setAddress(String address) {
-		this.address = address;
+		this.location = address;
 	}
 	int getTimeStart() {
 		return this.time_start;
@@ -60,8 +61,4 @@ public class Event {
 	int getVolNeeded() {
 		return this.vol_needed;
 	}
-	void addVol() {
-		this.vol_filled++;
-	}
-	
 }
