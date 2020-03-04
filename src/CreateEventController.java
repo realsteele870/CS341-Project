@@ -195,4 +195,17 @@ public class CreateEventController implements Initializable {
 			}
 		}
 	}
+	
+	@FXML
+	private void volunteer(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Volunteer.fxml"));
+		Scene scene = volunteerBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Volunteer");
+		window.show();
+
+	}
 }
