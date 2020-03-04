@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -155,6 +157,7 @@ public class VolunteerController implements Initializable {
 		eventNameList.getItems().clear();
 		initEvents();
 		showEventDetails();
+		confirmSubmission("Success!", "You are signed up for the event!");
 	}
 
 	@FXML
@@ -167,5 +170,12 @@ public class VolunteerController implements Initializable {
 		window.setScene(scene2);
 		window.setTitle("Home");
 		window.show();
+	}
+
+	private void confirmSubmission(String header, String content) {
+		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
 	}
 }

@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -81,7 +83,7 @@ public class CreateEventController implements Initializable {
 		int vols = Integer.parseInt(volunteersField.getText());
 		int startHour = toMilitaryTimeStart(timeStart);
 		int endHour = toMilitaryTimeEnd(timeEnd);
-		
+
 		// enter event into database
 		int eventId = getNextId();
 		Start.db.connect();
@@ -111,6 +113,9 @@ public class CreateEventController implements Initializable {
 		startPmRBtn.setSelected(false);
 		endAmRBtn.setSelected(false);
 		endPmRBtn.setSelected(false);
+
+		confirmSubmission("Sucess!", "Your event was created!");
+
 	}
 
 	private int getNextId() throws SQLException {
@@ -195,7 +200,7 @@ public class CreateEventController implements Initializable {
 			}
 		}
 	}
-	
+
 	@FXML
 	private void volunteer(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Volunteer.fxml"));
@@ -206,7 +211,13 @@ public class CreateEventController implements Initializable {
 		window.setScene(scene2);
 		window.setTitle("Volunteer");
 		window.show();
-		
 
+	}
+
+	private void confirmSubmission(String header, String content) {
+		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
 	}
 }

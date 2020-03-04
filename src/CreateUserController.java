@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -49,7 +51,7 @@ public class CreateUserController implements Initializable {
 		String pWord = passwordTextField.getText();
 		String uType = userTypeTextField.getText();
 		int userId = getNextUserId();
-		
+
 		Start.db.connect();
 		String insertStatement = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(insertStatement);
@@ -61,19 +63,22 @@ public class CreateUserController implements Initializable {
 		stmt.setString(6, pWord);
 		try {
 			stmt.executeUpdate();
-		} catch(SQLiteException e) {
-			//add in error pane to make visible if unique constrain (same username) violation
+		} catch (SQLiteException e) {
+			// add in error pane to make visible if unique constrain (same username)
+			// violation
 		}
 		Start.db.disconnect();
 
-		//clear fields
+		// clear fields
 		firstNameTextField.clear();
 		lastNameTextField.clear();
 		userNameTextField.clear();
 		passwordTextField.clear();
 		userTypeTextField.clear();
+
+		confirmSubmission("Success!", "Your account was successfully created!");
 	}
-	
+
 	private int getNextUserId() throws SQLException {
 		Start.db.connect();
 		String query = "SELECT Max(ID) " + "FROM Users";
@@ -82,7 +87,7 @@ public class CreateUserController implements Initializable {
 		Start.db.disconnect();
 		return max + 1;
 	}
-	
+
 	@FXML
 	private void home(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
@@ -93,6 +98,13 @@ public class CreateUserController implements Initializable {
 		window.setScene(scene2);
 		window.setTitle("Home");
 		window.show();
+	}
+
+	private void confirmSubmission(String header, String content) {
+		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
 	}
 
 }
