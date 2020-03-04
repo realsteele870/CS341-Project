@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -81,23 +83,37 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="passwordTextField" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Label" GridPane.rowIndex="5" />
+                  <PasswordField fx:id="userTypeTextField" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="User Type" textFill="WHITE" GridPane.rowIndex="5">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="userTypeTextField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" value="TDB">
-	              	<items>
-	                	<FXCollections fx:factory="observableArrayList">
-	                    	<String fx:value="Administrator" />
-	                    	<String fx:value="Donor" />
-	                    	<String fx:value="TBD" />
-	                	</FXCollections>
-            		</items>
-                  </ChoiceBox>
                </children>
             </GridPane>
-         </children></VBox>
+            <HBox prefHeight="54.0" prefWidth="288.0">
+               <children>
+                  <Button fx:id="homeBtn" mnemonicParsing="false" style="-fx-alignment: center-left;" text="Home">
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="createAccntBtn" mnemonicParsing="false" style="-fx-alignment: center-right;" text="Create User">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin></VBox>
    </left>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </BorderPane>

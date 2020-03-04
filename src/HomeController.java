@@ -32,15 +32,13 @@ public class HomeController implements Initializable {
 		// TODO Auto-generated method stub
 		if (Start.user == null) {
 			loggedInAs.setText("Guest");
-			Start.userType = "Guest";
 		} else {
 			loggedInAs.setText(Start.user);
 		}
 		if(!Start.userType.equals("Administrator")) {
 			createUserBtn.setDisable(true);
 			createUserBtn.setVisible(false);
-			createEvntBtn.setDisable(true);
-			createEvntBtn.setVisible(false);			
+			
 		}
 	}
 	
