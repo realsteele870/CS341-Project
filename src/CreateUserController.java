@@ -18,6 +18,8 @@ public class CreateUserController implements Initializable {
 	@FXML
 	private TextField passwordTextField;
 	@FXML
+	private TextField userTypeTextField;
+	@FXML
 	private Button createAccntBtn;
 
 	@Override
@@ -28,7 +30,7 @@ public class CreateUserController implements Initializable {
 
 	@FXML
 	private void createAccount(ActionEvent event) {
-
+		
 	}
 
 }
