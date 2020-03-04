@@ -105,6 +105,9 @@ public class VolunteerController implements Initializable {
 		else if(start == 12){
 			time += start + ":00 pm - ";
 		}
+		else if(start == 0) {
+			time += "12:00 am - ";
+		}
 		else {
 			time += start + ":00 am - ";
 		}

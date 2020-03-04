@@ -120,9 +120,9 @@
                </font>
             </Label>
          </children>
-         <padding>
-            <Insets right="20.0" />
-         </padding>
+         <BorderPane.margin>
+            <Insets right="50.0" />
+         </BorderPane.margin>
       </GridPane>
    </right>
    <center>
