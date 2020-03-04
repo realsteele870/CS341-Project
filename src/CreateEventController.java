@@ -53,7 +53,6 @@ public class CreateEventController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -194,5 +193,31 @@ public class CreateEventController implements Initializable {
 				endAmRBtn.setSelected(false);
 			}
 		}
+	}
+	
+	@FXML
+	private void volunteer(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Volunteer.fxml"));
+		Scene scene = volunteerBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Volunteer");
+		window.show();
+
+	}
+	
+	@FXML
+	private void viewEvent(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("ViewEvents.fxml"));
+		Scene scene = viewEventBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("View Events");
+		window.show();
+
 	}
 }
