@@ -30,7 +30,7 @@
    <left>
       <VBox alignment="CENTER" prefHeight="270.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="createUserBtn" mnemonicParsing="false" onAction="#createEvent" prefHeight="35.0" prefWidth="125.0" text="Create User">
+            <Button fx:id="createUserBtn" mnemonicParsing="false" onAction="#createUser" prefHeight="35.0" prefWidth="125.0" text="Create User">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>

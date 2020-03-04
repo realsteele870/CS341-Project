@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import org.sqlite.SQLiteException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,13 +53,17 @@ public class CreateUserController implements Initializable {
 		Start.db.connect();
 		String insertStatement = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(insertStatement);
-		stmt.setInt(0, userId);
-		stmt.setString(1, fName);
-		stmt.setString(2, lName);
-		stmt.setString(3, uType);
-		stmt.setString(4, uName);
-		stmt.setString(5, pWord);
-		stmt.executeUpdate();
+		stmt.setInt(1, userId);
+		stmt.setString(2, fName);
+		stmt.setString(3, lName);
+		stmt.setString(4, uType);
+		stmt.setString(5, uName);
+		stmt.setString(6, pWord);
+		try {
+			stmt.executeUpdate();
+		} catch(SQLiteException e) {
+			//add in error pane to make visible if unique constrain (same username) violation
+		}
 		Start.db.disconnect();
 
 		//clear fields
@@ -66,7 +72,6 @@ public class CreateUserController implements Initializable {
 		userNameTextField.clear();
 		passwordTextField.clear();
 		userTypeTextField.clear();
-
 	}
 	
 	private int getNextUserId() throws SQLException {

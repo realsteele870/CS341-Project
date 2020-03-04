@@ -83,12 +83,12 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="passwordTextField" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <PasswordField fx:id="userTypeTextField" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="User Type" textFill="WHITE" GridPane.rowIndex="5">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="userTypeTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="54.0" prefWidth="288.0">
@@ -98,7 +98,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="createAccntBtn" mnemonicParsing="false" style="-fx-alignment: center-right;" text="Create User">
+                  <Button fx:id="createAccntBtn" mnemonicParsing="false" onAction="#createUser" style="-fx-alignment: center-right;" text="Create User">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
