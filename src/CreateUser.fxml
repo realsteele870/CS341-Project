@@ -93,7 +93,7 @@
             </GridPane>
             <HBox prefHeight="54.0" prefWidth="288.0">
                <children>
-                  <Button fx:id="homeBtn" mnemonicParsing="false" style="-fx-alignment: center-left;" text="Home">
+                  <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#home" style="-fx-alignment: center-left;" text="Home">
                      <HBox.margin>
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </HBox.margin>
