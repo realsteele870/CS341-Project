@@ -206,6 +206,7 @@ public class CreateEventController implements Initializable {
 		window.setScene(scene2);
 		window.setTitle("Volunteer");
 		window.show();
+		
 
 	}
 }
