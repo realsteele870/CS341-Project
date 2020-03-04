@@ -32,6 +32,7 @@ public class HomeController implements Initializable {
 		// TODO Auto-generated method stub
 		if (Start.user == null) {
 			loggedInAs.setText("Guest");
+			Start.userType = "Guest";
 		} else {
 			loggedInAs.setText(Start.user);
 		}
