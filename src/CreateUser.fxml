@@ -52,14 +52,17 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="lastNameTextField" prefHeight="27.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="lastNameTextField" prefHeight="27.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextField>
                   <Label text="First Name" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
@@ -70,9 +73,15 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="firstNameTextField" prefHeight="27.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="userNameTextField" prefHeight="27.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="User name" textFill="WHITE" GridPane.rowIndex="3">
+                  <TextField fx:id="firstNameTextField" prefHeight="27.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="userNameTextField" prefHeight="27.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextField>
+                  <Label text="Username" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -82,13 +91,19 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordTextField" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <PasswordField fx:id="passwordTextField" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></PasswordField>
                   <Label text="User Type" textFill="WHITE" GridPane.rowIndex="5">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userTypeTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="userTypeTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextField>
                </children>
             </GridPane>
             <HBox prefHeight="54.0" prefWidth="288.0">
