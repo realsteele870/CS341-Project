@@ -27,34 +27,51 @@ public class VolunteerController implements Initializable {
 	private Button volunteer;
 	private ObservableList<Event> events;
 	int index;
-	@FXML private ListView<String> eventNameList;
-	@FXML private Label nameLbl;
-	@FXML private Label descLbl;
-	@FXML private Label locLbl;
-	@FXML private Label dateLbl;
-	@FXML private Label timeLbl;
-	@FXML private Label volLbl;
-	@FXML private GridPane eventDetailsGrid;
-	@FXML private Button homeBtn;
+	@FXML
+	private ListView<String> eventNameList;
+	@FXML
+	private Label nameLbl;
+	@FXML
+	private Label descLbl;
+	@FXML
+	private Label locLbl;
+	@FXML
+	private Label dateLbl;
+	@FXML
+	private Label timeLbl;
+	@FXML
+	private Label volLbl;
+	@FXML
+	private GridPane eventDetailsGrid;
+	@FXML
+	private Button homeBtn;
+	@FXML
+	private Button volunteerBtn;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		events = FXCollections.observableArrayList();
 		eventDetailsGrid.setVisible(false);
+
+		if (Start.userType.equals("Guest")) {
+			volunteerBtn.setDisable(true);
+			volunteerBtn.setVisible(false);
+		}
+
 		try {
 			initEvents();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void initEvents() throws SQLException {
 		Start.db.connect();
-		
+
 		String query = "SELECT * FROM Event";
 		ResultSet results = Start.db.runQuery(query);
-		
-		while(results.next()) {
+
+		while (results.next()) {
 			int id = results.getInt("EventId");
 			String name = results.getString("Name");
 			String desc = results.getString("Description");
@@ -64,15 +81,15 @@ public class VolunteerController implements Initializable {
 			int endTime = results.getInt("TimeEnd");
 			int volNeeded = results.getInt("VolNeeded");
 			int volFilled = results.getInt("VolFilled");
-			
-			Event e = new Event(id,name,desc,date,loc,startTime,endTime,volNeeded,volFilled);
+
+			Event e = new Event(id, name, desc, date, loc, startTime, endTime, volNeeded, volFilled);
 			events.add(e);
 			eventNameList.getItems().add(e.getName());
 		}
 		Start.db.disconnect();
-		
-		eventNameList.setOnMousePressed((MouseEvent e) ->{
-			if(e.getButton().equals(MouseButton.PRIMARY)) {
+
+		eventNameList.setOnMousePressed((MouseEvent e) -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				index = eventNameList.getSelectionModel().getSelectedIndex();
 				showEventDetails();
 			}
@@ -80,7 +97,8 @@ public class VolunteerController implements Initializable {
 	}
 
 	private void showEventDetails() {
-		if(index < 0) index = 0;
+		if (index < 0)
+			index = 0;
 		Event e = events.get(index);
 		nameLbl.setText(e.getName());
 		descLbl.setText(e.getDescription());
@@ -98,53 +116,47 @@ public class VolunteerController implements Initializable {
 		Event e = events.get(index);
 		int start = e.getTimeStart();
 		int end = e.getTimeEnd();
-		if(start > 12) {
+		if (start > 12) {
 			start = start - 12;
 			time += start + ":00 pm - ";
-		}
-		else if(start == 12){
+		} else if (start == 12) {
 			time += start + ":00 pm - ";
-		}
-		else if(start == 0) {
+		} else if (start == 0) {
 			time += "12:00 am - ";
-		}
-		else {
+		} else {
 			time += start + ":00 am - ";
 		}
-		if(end > 12) {
+		if (end > 12) {
 			end = end - 12;
 			time += end + ":00 pm";
-		}
-		else if(end == 12) {
+		} else if (end == 12) {
 			time += end + ":00 pm";
-		}
-		else {
+		} else {
 			time += end + ":00 am";
 		}
 		return time;
 	}
-	
+
 	private String convertVols(int volNeed, int volReq) {
 		return volNeed + " / " + volReq;
 	}
-	
+
 	public void volunteer(ActionEvent event) throws SQLException {
 		Start.db.connect();
-		
-		String query = "UPDATE Event SET VolFilled = VolFilled + 1 "
-				+ "WHERE EventId = ?";
+
+		String query = "UPDATE Event SET VolFilled = VolFilled + 1 " + "WHERE EventId = ?";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
 		stmt.setInt(1, events.get(index).getId());
 		stmt.executeUpdate();
 		Start.db.disconnect();
-		
+
 		// repopulate events
 		events.clear();
 		eventNameList.getItems().clear();
 		initEvents();
 		showEventDetails();
 	}
-	
+
 	@FXML
 	private void home(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));

@@ -103,7 +103,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer" GridPane.rowIndex="6" />
+            <Button fx:id="volunteerBtn" alignment="CENTER" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer" GridPane.rowIndex="6" />
             <Label fx:id="dateLbl" layoutX="148.0" layoutY="145.0" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
