@@ -61,4 +61,7 @@ public class Event {
 	int getVolNeeded() {
 		return this.vol_needed;
 	}
+	int getVolFilled() {
+		return this.vol_filled;
+	}
 }
