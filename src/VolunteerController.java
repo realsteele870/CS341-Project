@@ -148,6 +148,7 @@ public class VolunteerController implements Initializable {
 
 		String query = "UPDATE Event SET VolFilled = VolFilled + 1 " + "WHERE EventId = ?";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
+
 		stmt.setInt(1, events.get(index).getId());
 		stmt.executeUpdate();
 		Start.db.disconnect();

@@ -45,6 +45,7 @@ public class CreateUserController implements Initializable {
 
 	@FXML
 	private void createUser(ActionEvent event) throws SQLException {
+		boolean createdAccount = true;
 		String fName = firstNameTextField.getText();
 		String lName = lastNameTextField.getText();
 		String uName = userNameTextField.getText();
@@ -66,6 +67,8 @@ public class CreateUserController implements Initializable {
 		} catch (SQLiteException e) {
 			// add in error pane to make visible if unique constrain (same username)
 			// violation
+			userAlreadyExists("Previous Account", "An account is already made for this user");
+			createdAccount = false;
 		}
 		Start.db.disconnect();
 
@@ -75,8 +78,9 @@ public class CreateUserController implements Initializable {
 		userNameTextField.clear();
 		passwordTextField.clear();
 		userTypeTextField.clear();
-
-		confirmSubmission("Success!", "Your account was successfully created!");
+		if (createdAccount) {
+			confirmSubmission("Success!", "Your account was successfully created!");
+		}
 	}
 
 	private int getNextUserId() throws SQLException {
@@ -102,6 +106,13 @@ public class CreateUserController implements Initializable {
 
 	private void confirmSubmission(String header, String content) {
 		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
+	}
+
+	private void userAlreadyExists(String header, String content) {
+		Alert confAlert = new Alert(AlertType.ERROR);
 		confAlert.setHeaderText(header);
 		confAlert.setContentText(content);
 		confAlert.showAndWait();
