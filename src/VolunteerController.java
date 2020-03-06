@@ -145,20 +145,28 @@ public class VolunteerController implements Initializable {
 
 	public void volunteer(ActionEvent event) throws SQLException {
 		Start.db.connect();
+		boolean successfulVol = true;
 
 		String query = "UPDATE Event SET VolFilled = VolFilled + 1 " + "WHERE EventId = ?";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
+		if (events.get(index).getVolFilled() + 1 > events.get(index).getVolNeeded()) {
+			successfulVol = false;
+			denySubmission("Error", "Event is already full of volunteers");
+		}
 
-		stmt.setInt(1, events.get(index).getId());
-		stmt.executeUpdate();
-		Start.db.disconnect();
-
+		if (successfulVol) {
+			stmt.setInt(1, events.get(index).getId());
+			stmt.executeUpdate();
+			Start.db.disconnect();
+		}
 		// repopulate events
 		events.clear();
 		eventNameList.getItems().clear();
 		initEvents();
 		showEventDetails();
-		confirmSubmission("Success!", "You are signed up for the event!");
+		if (successfulVol) {
+			confirmSubmission("Success!", "You are signed up for the event!");
+		}
 	}
 
 	@FXML
@@ -175,6 +183,13 @@ public class VolunteerController implements Initializable {
 
 	private void confirmSubmission(String header, String content) {
 		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
+	}
+
+	private void denySubmission(String header, String content) {
+		Alert confAlert = new Alert(AlertType.WARNING);
 		confAlert.setHeaderText(header);
 		confAlert.setContentText(content);
 		confAlert.showAndWait();
