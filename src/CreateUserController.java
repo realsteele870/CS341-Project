@@ -105,7 +105,7 @@ public class CreateUserController implements Initializable {
 	}
 
 	private void confirmSubmission(String header, String content) {
-		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		Alert confAlert = new Alert(AlertType.INFORMATION);
 		confAlert.setHeaderText(header);
 		confAlert.setContentText(content);
 		confAlert.showAndWait();
