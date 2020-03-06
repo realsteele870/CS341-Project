@@ -74,33 +74,41 @@ public class CreateEventController implements Initializable {
 	@FXML
 	private void createEvent(ActionEvent event) throws SQLException {
 		// get info from fields
+		boolean checkVols = true;
 		String name = nameField.getText();
 		String desc = descArea.getText();
 		String loc = locationField.getText();
 		String date = dateField.getEditor().getText();
 		String timeStart = timeStrtField.getText();
 		String timeEnd = timeEndField.getText();
-		int vols = Integer.parseInt(volunteersField.getText());
-		int startHour = toMilitaryTimeStart(timeStart);
-		int endHour = toMilitaryTimeEnd(timeEnd);
+		int vols = 0;
+		try {
+			vols = Integer.parseInt(volunteersField.getText());
+		} catch (NumberFormatException ex) {
+			checkVols = false;
+			denySubmission("Error", "Please enter a valid number of volunteers");
+		}
+		if (checkVols) {
+			int startHour = toMilitaryTimeStart(timeStart);
+			int endHour = toMilitaryTimeEnd(timeEnd);
 
-		// enter event into database
-		int eventId = getNextId();
-		Start.db.connect();
-		String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		PreparedStatement stmt = Start.db.connection.prepareStatement(query);
-		stmt.setInt(1, eventId);
-		stmt.setString(2, name);
-		stmt.setString(3, desc);
-		stmt.setString(4, loc);
-		stmt.setString(5, date);
-		stmt.setInt(6, startHour);
-		stmt.setInt(7, endHour);
-		stmt.setInt(8, vols);
-		stmt.setInt(9, 0); // initial volunteers filled is 0
-		stmt.executeUpdate();
-		Start.db.disconnect();
-
+			// enter event into database
+			int eventId = getNextId();
+			Start.db.connect();
+			String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stmt = Start.db.connection.prepareStatement(query);
+			stmt.setInt(1, eventId);
+			stmt.setString(2, name);
+			stmt.setString(3, desc);
+			stmt.setString(4, loc);
+			stmt.setString(5, date);
+			stmt.setInt(6, startHour);
+			stmt.setInt(7, endHour);
+			stmt.setInt(8, vols);
+			stmt.setInt(9, 0); // initial volunteers filled is 0
+			stmt.executeUpdate();
+			Start.db.disconnect();
+		}
 		// clear fields
 		nameField.clear();
 		descArea.clear();
@@ -113,8 +121,9 @@ public class CreateEventController implements Initializable {
 		startPmRBtn.setSelected(false);
 		endAmRBtn.setSelected(false);
 		endPmRBtn.setSelected(false);
-
-		confirmSubmission("Sucess!", "Your event was created!");
+		if (checkVols) {
+			confirmSubmission("Sucess!", "Your event was created!");
+		}
 
 	}
 
@@ -216,6 +225,13 @@ public class CreateEventController implements Initializable {
 
 	private void confirmSubmission(String header, String content) {
 		Alert confAlert = new Alert(AlertType.CONFIRMATION);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
+	}
+
+	private void denySubmission(String header, String content) {
+		Alert confAlert = new Alert(AlertType.WARNING);
 		confAlert.setHeaderText(header);
 		confAlert.setContentText(content);
 		confAlert.showAndWait();
