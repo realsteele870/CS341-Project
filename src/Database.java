@@ -19,6 +19,7 @@ public class Database {
 	public Repository liveRepository;
 	private CredentialsProvider cp;
 	String databaseLocation = "nasa.db";
+	
 	public Database() {
         SQLiteDataSource ds = null;
 
@@ -61,5 +62,17 @@ public class Database {
 		PreparedStatement stmt = connection.prepareStatement(query);
 		ResultSet results = stmt.executeQuery();
 		return results;
+	}
+	
+	public void updateDatabase() {
+		git.commit();
+		git.push();
+		git.pull();
+	}	
+	public void pushDatabase() {
+		git.push();
+	}
+	public void pullDatabase() {
+		git.pull();
 	}
 }
