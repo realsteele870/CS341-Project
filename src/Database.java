@@ -158,10 +158,17 @@ public class Database {
 		}
 	}
 	public void fetchDatabase() {
-		git.fetch();
-	}
-	public void fetchPullDatabase() {
-		git.fetch();
-		git.pull();
+		try {
+			git.fetch().call();
+		} catch (InvalidRemoteException e) {
+			System.err.println("Fetch was performed on an invalid remote location/repository.");
+			e.printStackTrace();
+		} catch (TransportException e) {
+			System.err.println("Transport Operation Failed.");
+			e.printStackTrace();
+		} catch (GitAPIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
