@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +31,8 @@ public class Start extends Application {
 	public static Database db;
 	public static String user;
 	public static String userType;
-
+	public static int userId;
+	
 	public static void main(String[] args) {
 		db = new Database();
 		launch(args);
@@ -56,7 +58,7 @@ public class Start extends Application {
 		String userName = usernameField.getText(); // get users entered username
 		String userPass = passwordField.getText(); // get users entered password
 		// query to get password of user
-		String query = "SELECT Password, FirstName, UserType FROM Users WHERE UserName = ?";
+		String query = "SELECT Password, FirstName, UserType, ID FROM Users WHERE UserName = ?";
 		PreparedStatement stmt = db.connection.prepareStatement(query);
 		stmt.setString(1, userName);
 		ResultSet result = stmt.executeQuery();
@@ -71,6 +73,7 @@ public class Start extends Application {
 			String pass = result.getString("Password");
 			user = result.getString("FirstName");
 			userType = result.getString("UserType");
+			userId = result.getInt("ID");
 			db.disconnect();
 
 			// if user password equals database password
