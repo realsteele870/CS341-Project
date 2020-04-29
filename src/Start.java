@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,6 +116,7 @@ public class Start extends Application {
 		window.show();
 		user = null;
 	}
+<<<<<<< HEAD
 
 	private String encrypt(String encrypt) {
 		StringBuilder sb = new StringBuilder();
@@ -137,3 +137,6 @@ public class Start extends Application {
 		confAlert.showAndWait();
 	}
 }
+=======
+}
+>>>>>>> 6cc3d241b6ca2e8c9f5244a64e3290e15a0474fc
