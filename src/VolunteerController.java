@@ -187,7 +187,7 @@ public class VolunteerController implements Initializable {
 	}
 
 	public void volunteer(ActionEvent event) throws SQLException {
-		Start.db.connect();
+
 		boolean successfulVol = true;
 
 		
@@ -195,13 +195,71 @@ public class VolunteerController implements Initializable {
 			successfulVol = false;
 			denySubmission("Error", "Event is already full of volunteers");
 		}
+		
+		/*
+		 * *****************************************************************
+		 * Check for conflicting times on the same date
+		 */
+		String eventDate = events.get(index).getDate();
+		
+		Start.db.connect();
+		String conflictQuery = "SELECT TimeStart, TimeEnd" + 
+				"	FROM Event NATURAL JOIN EventUsers JOIN Users ON EventUsers.UserId = Users.ID " + 
+				"	WHERE Users.ID = ? AND Event.Date = ?";
+		PreparedStatement stmt = Start.db.connection.prepareStatement(conflictQuery);
+		stmt.setInt(1, Start.userId);
+		stmt.setString(2, eventDate);
+		ResultSet results = stmt.executeQuery();
+		
+		
+		int prevStart = 0;
+		int prevEnd = 0;
+		int currStart = events.get(index).getTimeStart();
+		int currEnd = events.get(index).getTimeEnd();
+		
+		while(results.next()) {
+			prevStart = results.getInt("TimeStart");
+			prevEnd = results.getInt("TimeEnd");
+			
+			// events start at same time
+			if(currStart == prevStart) {
+				successfulVol = false;
+				denySubmission("Error", "Already volunteered for event with overlapping times!");
+				break;
+			}
+			// event starts before existing event, but ends after existing event starts
+			else if(currStart < prevStart && currEnd > prevStart) {
+				successfulVol = false;
+				denySubmission("Error","Already volunteered for event with overlapping times!");
+				break;
+			}
+			// event starts after existing event starts, but ends before existing event ends
+			// (time is inside of event)
+			else if(currStart > prevStart && currEnd < prevEnd) {
+				successfulVol = false;
+				denySubmission("Error","Already volunteered for event with overlapping times!");
+				break;
+			}
+			//event starts inside existing event, ends after exisiting event ends
+			else if(currStart < prevEnd && currEnd > prevEnd) {
+				successfulVol = false;
+				denySubmission("Error","Already volunteered for event with overlapping times!");
+				break;
+			}
+		}
+		Start.db.disconnect();
+		
+		/*
+		 *
+		 ********************************************************************/
 
 		if (successfulVol) {
 			/*
 			 * Update EventUsers Table First
 			 */
+			Start.db.connect();
 			String query = "INSERT INTO EventUsers VALUES (?, ?, ?)";
-			PreparedStatement stmt = Start.db.connection.prepareStatement(query);
+			stmt = Start.db.connection.prepareStatement(query);
 			int id = getNextId();
 			int uId = Start.userId;
 			int eventId = events.get(index).getId();
