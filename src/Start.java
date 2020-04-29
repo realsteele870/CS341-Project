@@ -78,6 +78,9 @@ public class Start extends Application {
 			db.disconnect();
 
 			// if user password equals database password
+			System.out.println("Start1: " + pass);
+			userPass = encrypt(userPass);
+			System.out.println("Start: " + userPass);
 			if (pass.equals(userPass)) {
 				Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
 				Scene scene = loginBtn.getScene(); // use button to get current scene
@@ -87,6 +90,9 @@ public class Start extends Application {
 				window.setScene(scene2);
 				window.setTitle("Home");
 				window.show();
+			} else {
+				wrongPass("Error", "Incorrect Password");
+
 			}
 		}
 	}
@@ -110,5 +116,24 @@ public class Start extends Application {
 		window.setTitle("Home");
 		window.show();
 		user = null;
+	}
+
+	private String encrypt(String encrypt) {
+		StringBuilder sb = new StringBuilder();
+		char[] encrypter = encrypt.toCharArray();
+
+		for (char ch : encrypter) {
+			sb.append((byte) ch);
+		}
+		String encrypted = sb.toString() + 5;
+		return encrypted;
+
+	}
+
+	private void wrongPass(String header, String content) {
+		Alert confAlert = new Alert(AlertType.ERROR);
+		confAlert.setHeaderText(header);
+		confAlert.setContentText(content);
+		confAlert.showAndWait();
 	}
 }

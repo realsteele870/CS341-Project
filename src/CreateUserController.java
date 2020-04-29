@@ -52,7 +52,7 @@ public class CreateUserController implements Initializable {
 		String pWord = passwordTextField.getText();
 		String uType = userTypeTextField.getText();
 		int userId = getNextUserId();
-
+		pWord = encrypt(pWord);
 		Start.db.connect();
 		String insertStatement = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(insertStatement);
@@ -116,6 +116,18 @@ public class CreateUserController implements Initializable {
 		confAlert.setHeaderText(header);
 		confAlert.setContentText(content);
 		confAlert.showAndWait();
+	}
+
+	private String encrypt(String encrypt) {
+		StringBuilder sb = new StringBuilder();
+		char[] encrypter = encrypt.toCharArray();
+
+		for (char ch : encrypter) {
+			sb.append((byte) ch);
+		}
+		String encrypted = sb.toString() + 5;
+		return encrypted;
+
 	}
 
 }
