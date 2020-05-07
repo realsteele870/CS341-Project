@@ -9,12 +9,15 @@ import org.sqlite.SQLiteDataSource;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.AbortedByHookException;
 import org.eclipse.jgit.api.errors.CanceledException;
+import org.eclipse.jgit.api.errors.CheckoutConflictException;
 import org.eclipse.jgit.api.errors.ConcurrentRefUpdateException;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.InvalidConfigurationException;
+import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.InvalidRemoteException;
 import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.api.errors.NoMessageException;
+import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
 import org.eclipse.jgit.api.errors.TransportException;
@@ -62,11 +65,11 @@ public class Database {
 			e.printStackTrace();
 		}
         config = liveRepository.getConfig();
+		git = new Git(liveRepository);
 	}
 	
 	public void connect() throws SQLException {
 		connection = DriverManager.getConnection("jdbc:sqlite:nasa.db");
-		git = new Git(liveRepository);
 		
 		//config.setString("user", NULL, , value);
 	}
@@ -91,10 +94,10 @@ public class Database {
 		}
 		pushDatabase();
 		pullDatabase();
-	}	
+	}
 	public void commitDatabase(String message) {
 		try {
-			git.commit().setMessage(message).call();
+			git.commit().setAuthor("benlamasney", "benlamasney@gmail.com").setMessage(message).call();
 		} catch (NoHeadException e) {
 			System.err.println("No HEAD for repository was found.");
 			e.printStackTrace();
@@ -118,6 +121,12 @@ public class Database {
 	}
 	public void pushDatabase() {
 		try {
+			git.add().addFilepattern("nasa.db").call();
+		} catch (GitAPIException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			git.push().call();
 		} catch (InvalidRemoteException e) {
 			System.err.println("Fetch was performed on an invalid remote location/repository.");
@@ -130,8 +139,29 @@ public class Database {
 		}	
 	}
 	public void pullDatabase() {
+		fetchDatabase();
 		try {
+			git.checkout().addPath("nasa.db").call();
+		} catch (RefAlreadyExistsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (RefNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InvalidRefNameException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (CheckoutConflictException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (GitAPIException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			System.out.println("Pulling Database.");
 			git.pull().call();
+			System.out.println(":Db pulled");
 		} catch (WrongRepositoryStateException e) {
 			System.err.println("An error in repository permissions prohibits your current action.");
 			e.printStackTrace();

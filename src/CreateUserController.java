@@ -71,7 +71,7 @@ public class CreateUserController implements Initializable {
 			createdAccount = false;
 		}
 		Start.db.disconnect();
-
+		//Start.db.updateDatabase("Added user");
 		// clear fields
 		firstNameTextField.clear();
 		lastNameTextField.clear();

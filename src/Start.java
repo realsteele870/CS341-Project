@@ -52,8 +52,8 @@ public class Start extends Application {
 
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
-		db.connect();
 		db.pullDatabase();
+		db.connect();
 		String userName = usernameField.getText(); // get users entered username
 		String userPass = passwordField.getText(); // get users entered password
 		userName = userName.replaceAll(" ", "");
