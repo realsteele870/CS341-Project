@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.time.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,10 +88,10 @@ public class VolunteerController implements Initializable {
 
 	public void initEvents() throws SQLException {
 		Start.db.connect();
-
+		LocalDateTime ldt = LocalDateTime.now();
 		String query = "SELECT * FROM Event";
 		ResultSet results = Start.db.runQuery(query);
-
+		
 		while (results.next()) {
 			int id = results.getInt("EventId");
 			String name = results.getString("Name");
@@ -103,6 +104,8 @@ public class VolunteerController implements Initializable {
 			int volFilled = results.getInt("VolFilled");
 
 			Event e = new Event(id, name, desc, date, loc, startTime, endTime, volNeeded, volFilled);
+			//String [] dataInfo = e.date.split("/");
+			System.out.println(e.date);
 			events.add(e);
 			eventNameList.getItems().add(e.getName());
 		}
