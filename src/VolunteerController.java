@@ -105,9 +105,14 @@ public class VolunteerController implements Initializable {
 
 			Event e = new Event(id, name, desc, date, loc, startTime, endTime, volNeeded, volFilled);
 			//String [] dataInfo = e.date.split("/");
-			System.out.println(e.date);
-			events.add(e);
-			eventNameList.getItems().add(e.getName());
+			String [] dateInfo = e.date.split("/");
+			if(Integer.parseInt(dateInfo[0]) >= ldt.getMonthValue() &&
+			   Integer.parseInt(dateInfo[1]) >= ldt.getDayOfMonth() &&
+			   Integer.parseInt(dateInfo[2]) >= ldt.getYear()) {
+				System.out.println(e.date);
+				events.add(e);
+				eventNameList.getItems().add(e.getName());
+			}
 		}
 		Start.db.disconnect();
 
