@@ -20,19 +20,21 @@ import org.eclipse.jgit.api.errors.RefNotFoundException;
 import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.api.errors.UnmergedPathsException;
 import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
+import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.transport.CredentialsProvider;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 public class Database {
 
 	public Connection connection;
 	//Database Git update-objects
-	private Git git;
+	Git git;
 	private Repository liveRepository;
-	private CredentialsProvider cp;
+	//private CredentialsProvider cp = new UsernamePasswordCredentialsProvider("benlamasney", "");
 	private String databaseLocation = "nasa.db";
-	
+	private Config config;
 	public Database() {
         SQLiteDataSource ds = null;
 
@@ -59,12 +61,14 @@ public class Database {
 			System.err.print("Unable to locate local repository");
 			e.printStackTrace();
 		}
+        config = liveRepository.getConfig();
 	}
 	
 	public void connect() throws SQLException {
 		connection = DriverManager.getConnection("jdbc:sqlite:nasa.db");
 		git = new Git(liveRepository);
 		
+		//config.setString("user", NULL, , value);
 	}
 	
 	public void disconnect() throws SQLException {
