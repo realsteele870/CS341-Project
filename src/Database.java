@@ -35,7 +35,7 @@ public class Database {
 	//Database Git update-objects
 	Git git;
 	private Repository liveRepository;
-	//private CredentialsProvider cp = new UsernamePasswordCredentialsProvider("benlamasney", "");
+	private CredentialsProvider cp = new UsernamePasswordCredentialsProvider("benlamasney", "Getshitdone22!");
 	private String databaseLocation = "nasa.db";
 	private Config config;
 	public Database() {
@@ -87,12 +87,12 @@ public class Database {
 	
 	public void updateDatabase(String commitMessage) {
 		String defaultMessage = "Auto-Update";
+		pushDatabase();
 		if("".equals(commitMessage)) {
 			commitDatabase(defaultMessage);
 		} else {
 			commitDatabase(commitMessage);
-		}
-		pushDatabase();
+		}		
 		pullDatabase();
 	}
 	public void commitDatabase(String message) {
@@ -122,12 +122,13 @@ public class Database {
 	public void pushDatabase() {
 		try {
 			git.add().addFilepattern("nasa.db").call();
+			System.out.println("Added nasa.db");
 		} catch (GitAPIException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
-			git.push().call();
+			git.push().setCredentialsProvider(cp).call();
 		} catch (InvalidRemoteException e) {
 			System.err.println("Fetch was performed on an invalid remote location/repository.");
 			e.printStackTrace();
