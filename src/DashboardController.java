@@ -43,6 +43,7 @@ public class DashboardController implements Initializable {
 	private ObservableList<EventUsers> donations;
 
 	@Override
+	/* Initializes the labels and the events to be shown */
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		nameLbl.setVisible(false);
@@ -61,6 +62,7 @@ public class DashboardController implements Initializable {
 
 	}
 
+	// returns to home
 	@FXML
 	private void home(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
@@ -73,6 +75,7 @@ public class DashboardController implements Initializable {
 		window.show();
 	}
 
+	// connects to database to put the event information into the listview
 	public void initEvents() throws SQLException {
 		Start.db.connect();
 		LocalDateTime ldt = LocalDateTime.now();
@@ -157,6 +160,7 @@ public class DashboardController implements Initializable {
 
 	}
 
+	// displays the event details when clicked on in the listview
 	private void showEventDetails() throws SQLException {
 
 		if (index < 0)
