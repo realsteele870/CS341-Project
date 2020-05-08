@@ -59,7 +59,7 @@ public class CreateUserController implements Initializable {
 		int userId = getNextUserId();
 		pWord = encrypt(pWord);
 		Start.db.connect();
-		String insertStatement = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?)";
+		String insertStatement = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?,?)";
 		PreparedStatement stmt = Start.db.connection.prepareStatement(insertStatement);
 		stmt.setInt(1, userId);
 		stmt.setString(2, fName);
@@ -67,6 +67,7 @@ public class CreateUserController implements Initializable {
 		stmt.setString(4, uType);
 		stmt.setString(5, uName);
 		stmt.setString(6, pWord);
+		stmt.setString(7,null);
 		try {
 			stmt.executeUpdate();
 		} catch (SQLiteException e) {
