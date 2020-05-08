@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="783.0" style="-fx-background-color: #3a62f0#3a62f0 #3a62f0#3a62f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HelpController">
+   <top>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="412.0" prefWidth="682.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Help" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextArea prefHeight="343.0" prefWidth="682.0" text="Create User (Feature available for: Guest, Donor, Volunteer, and Admin):&#10;If you want to donate or volunteer you need to make an account and you can do this from the home page by clickling &#10;the &quot;Create User&quot; button. Then fill out the information form with your first and last name, username, password, and for &#10;user type choose between &quot;Donor&quot; and &quot;Volunteer&quot; depending on your needs. After completing the form click the &#10;create user button and a new user account will be created in the system.&#10;&#10;Log In (Feature available for: Donor, Volunteer, and Admin):&#10;Enter the username and password you entered when you created your account in the username and password field &#10;respectively. Then click the &quot;Login&quot; button to be taken to the home page.&#10;&#10;User Details (Feature available for: Donor, Volunteer, and Admin):&#10;From the home page click the &quot;Dashboard&quot; button. This pages shows the history and details of your NASA account.&#10;&#10;Volunteer (Feature available for: Volunteer, Donor, and Admin):&#10;From the home page click the &quot;Event List&quot; button. Click on an event in the event list and details for the event will show &#10;up on the right. If you wish to volunteer for this event click the &quot;Volunteer&quot; button and you will be added to the list of &#10;volunteers for that event.&#10;&#10;Donate (Feature available for: Donor and Admin):&#10;From the home page click the &quot;Event List&quot; button. Then select which event you would like to donate to from the event list &#10;in the center of the screen. The event &quot;NASA&quot; is an unrestricted donation to NASA to use as it sees fit. Then enter the &#10;dollar amount in the field above the &quot;Donate!&quot; button then click the &quot;Donate!&quot; button afterwards to confirm your donation.&#10;&#10;Create Event (Feature available for: Admin):&#10;From the home page click the &quot;Create Event&quot; button. Then fill in a sensible name, description and location for the event. &#10;Then select the date of the event from the drop down calendar. Then enter the time start and end, and toggle the button &#10;for AM/PM. Then enter a number for the number of volunteers this event needs. Finally click the &quot;Create Event&quot; button&#10;and the event will be added to the events list. &#10;&#10;Delete Event (Feature available for: Admin): &#10;From the home page click on the &quot;Admins&quot; button. Then click on the &quot;Events&quot; tab in the top left of the screen. From here&#10;select the event you want to delete from the event list on the left side under the &quot;Events&quot; tab. Then click on the &quot;Cancel &#10;Event&quot; button to cancle the event.&#10;&#10;Delete User (Feature available for: Admin):&#10;From the home page click on the &quot;Admins&quot; button. Then select the user you are trying to delete from the list on the left&#10;under the &quot;Volunteers&quot; tab. Then in order to delete the user from the system click the &quot;Delete&quot; button on the bottom.&#10;&#10;Run User Report (Feature available for: Admin): &#10;From the home page click on the &quot;Admins&quot; button.  hen select the user you are trying to run a report on from the list on &#10;the left under the &quot;Volunteers&quot; tab. Then click on the &quot;Run Employee Summary Report&quot; button to run the report. The data&#10;from the report will then be displayed on the screen.">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" top="10.0" />
+               </VBox.margin></TextArea>
+            <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#home" prefHeight="35.0" prefWidth="125.0" text="Home">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

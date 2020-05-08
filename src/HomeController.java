@@ -30,6 +30,8 @@ public class HomeController implements Initializable {
 	private Button adminBtn;
 	@FXML
 	private Label loggedInAs;
+	@FXML
+	private Button helpBtn;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -132,6 +134,19 @@ public class HomeController implements Initializable {
 	private void dashboard(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
 		Scene scene = dashBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Dashboard");
+		window.show();
+
+	}
+
+	@FXML
+	private void helpPage(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Help.fxml"));
+		Scene scene = helpBtn.getScene(); // use button to get current scene
 		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
 																					// dimensions
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
