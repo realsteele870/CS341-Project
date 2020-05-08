@@ -5,6 +5,7 @@ public class User {
 	String lastName;
 	String userType;
 	String userName;
+	String deacDate;
 	protected String password;
 	public User(String fName, String lName, String uType) {
 		this.firstName = fName;
@@ -17,6 +18,15 @@ public class User {
 		this.userType  = uType;
 		this.userName  = uName;
 		this.password  = pWord;
+	}
+	public User(int i, String fName, String lName, String uType, String uName, String pWord, String dDate) {
+		this.id = i;
+		this.firstName = fName;
+		this.lastName = lName;
+		this.userType = uType;
+		this.userName = uName;
+		this.password = pWord;
+		this.deacDate = dDate;
 	}
 	String getFirstName() {
 		return this.firstName;
@@ -47,6 +57,12 @@ public class User {
 	}
 	void setPassword(String pWord) {
 		this.password = pWord;
+	}
+	String getDeacDate() {
+		return this.deacDate;
+	}
+	int getId() {
+		return id;
 	}
 	
 }

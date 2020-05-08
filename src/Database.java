@@ -35,9 +35,13 @@ public class Database {
 	//Database Git update-objects
 	Git git;
 	private Repository liveRepository;
-	//private CredentialsProvider cp = new UsernamePasswordCredentialsProvider("benlamasney", "");
+	private CredentialsProvider cp = new UsernamePasswordCredentialsProvider("benlamasney", "Getshitdone22!");
 	private String databaseLocation = "nasa.db";
 	private Config config;
+	/**
+	 * Initializes database object, its connection, 
+	 * as well as sets up the Git repository connection
+	 */
 	public Database() {
         SQLiteDataSource ds = null;
 
@@ -67,34 +71,52 @@ public class Database {
         config = liveRepository.getConfig();
 		git = new Git(liveRepository);
 	}
-	
+	/**
+	 * Establishes connection to alter database
+	 * @throws SQLException
+	 */
 	public void connect() throws SQLException {
 		connection = DriverManager.getConnection("jdbc:sqlite:nasa.db");
 		
 		//config.setString("user", NULL, , value);
 	}
-	
+	/**
+	 * Disconnects from database, allowing changes to be viewable
+	 * @throws SQLException
+	 */
 	public void disconnect() throws SQLException {
 		connection.close();
 	}
-	
+	/**
+	 * 
+	 * @param query : query to be run
+	 * @return
+	 * @throws SQLException
+	 */
 	public ResultSet runQuery(String query) throws SQLException {
 		PreparedStatement stmt = connection.prepareStatement(query);
 		ResultSet results = stmt.executeQuery();
 		return results;
 	}
 
-	
+	/**
+	 * Updates database
+	 * @param commitMessage : message to attach to commit
+	 */
 	public void updateDatabase(String commitMessage) {
 		String defaultMessage = "Auto-Update";
+		pushDatabase();
 		if("".equals(commitMessage)) {
 			commitDatabase(defaultMessage);
 		} else {
 			commitDatabase(commitMessage);
-		}
-		pushDatabase();
+		}		
 		pullDatabase();
 	}
+	/**
+	 * 
+	 * @param message: message to attach to commit summarizing changes
+	 */
 	public void commitDatabase(String message) {
 		try {
 			git.commit().setAuthor("benlamasney", "benlamasney@gmail.com").setMessage(message).call();
@@ -119,15 +141,20 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Not functioning for unknown reasons
+	 * Possible authorization issues.
+	 */
 	public void pushDatabase() {
 		try {
 			git.add().addFilepattern("nasa.db").call();
+			System.out.println("Added nasa.db");
 		} catch (GitAPIException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
-			git.push().call();
+			git.push().setCredentialsProvider(cp).call();
 		} catch (InvalidRemoteException e) {
 			System.err.println("Fetch was performed on an invalid remote location/repository.");
 			e.printStackTrace();
@@ -138,6 +165,11 @@ public class Database {
 			e.printStackTrace();
 		}	
 	}
+	/**
+	 * Functioning
+	 * Fetches database file from remote Git repository
+	 * Checkout database file from pulled files and replaces old version
+	 */
 	public void pullDatabase() {
 		fetchDatabase();
 		try {
@@ -191,6 +223,9 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Pulls remote repository from Git repo but does not merge
+	 */
 	public void fetchDatabase() {
 		try {
 			git.fetch().call();

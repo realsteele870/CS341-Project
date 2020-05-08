@@ -8,6 +8,7 @@ public class Event {
 	String description;
 	String date;
 	String location;
+	String cancelDate;
 	int time_start;
 	int time_end;
 	int vol_needed;
@@ -22,6 +23,18 @@ public class Event {
 		this.time_end   = time_E;
 		this.vol_needed = vol_needed;
 		this.vol_filled = vol_filled;
+	}
+	public Event(int id, String name, String description, String date, String location, int time_S, int time_E, int vol_needed, int vol_filled, String cancelDate) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.date = date;
+		this.location = location;
+		this.time_start = time_S;
+		this.time_end   = time_E;
+		this.vol_needed = vol_needed;
+		this.vol_filled = vol_filled;
+		this.cancelDate = cancelDate;
 	}
 	int getId() {
 		return this.id;
@@ -67,5 +80,8 @@ public class Event {
 	}
 	int getVolFilled() {
 		return this.vol_filled;
+	}
+	String getCancelDate() {
+		return this.cancelDate;
 	}
 }

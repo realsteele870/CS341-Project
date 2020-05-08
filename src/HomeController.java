@@ -25,12 +25,13 @@ public class HomeController implements Initializable {
 	@FXML
 	private Button volunteerBtn;
 	@FXML
+	private Button adminBtn;
+	@FXML
 	private Label loggedInAs;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		viewEventBtn.setVisible(false);
-		// TODO Auto-generated method stub
 		if (Start.user == null) {
 			loggedInAs.setText("Guest");
 			Start.userType = "Guest";
@@ -42,6 +43,7 @@ public class HomeController implements Initializable {
 			createUserBtn.setVisible(false);
 			createEvntBtn.setDisable(true);
 			createEvntBtn.setVisible(false);
+			adminBtn.setVisible(false);
 
 		}
 	}
@@ -93,6 +95,18 @@ public class HomeController implements Initializable {
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene2);
 		window.setTitle("Create Event");
+		window.show();
+	}
+	
+	@FXML
+	private void goToAdmin(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
+		Scene scene = createEvntBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Admin Dashboard");
 		window.show();
 	}
 
