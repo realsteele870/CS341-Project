@@ -42,7 +42,12 @@ public class CreateUserController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * called upon an admin clicking the create user button:
+	 * creates a new user tuple within the user table
+	 * @param event
+	 * @throws SQLException
+	 */
 	@FXML
 	private void createUser(ActionEvent event) throws SQLException {
 		boolean createdAccount = true;
@@ -82,7 +87,11 @@ public class CreateUserController implements Initializable {
 			confirmSubmission("Success!", "Your account was successfully created!");
 		}
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	private int getNextUserId() throws SQLException {
 		Start.db.connect();
 		String query = "SELECT Max(ID) " + "FROM Users";
@@ -91,7 +100,11 @@ public class CreateUserController implements Initializable {
 		Start.db.disconnect();
 		return max + 1;
 	}
-
+	/**
+	 * generates home button display
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void home(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
@@ -103,14 +116,22 @@ public class CreateUserController implements Initializable {
 		window.setTitle("Home");
 		window.show();
 	}
-
+	/**
+	 * 
+	 * @param header : confirmation alert title
+	 * @param content: confirmation alert details
+	 */
 	private void confirmSubmission(String header, String content) {
 		Alert confAlert = new Alert(AlertType.INFORMATION);
 		confAlert.setHeaderText(header);
 		confAlert.setContentText(content);
 		confAlert.showAndWait();
 	}
-
+	/**
+	 * 
+	 * @param header : confirmation alert title
+	 * @param content: confirmation alert details
+	 */
 	private void userAlreadyExists(String header, String content) {
 		Alert confAlert = new Alert(AlertType.ERROR);
 		confAlert.setHeaderText(header);

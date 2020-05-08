@@ -37,7 +37,9 @@ public class Start extends Application {
 		launch(args);
 
 	}
-
+	/**
+	 *  connects to login xfml file and sets view parameters
+	 */
 	public void start(Stage loginStage) throws IOException, SQLException {
 
 		Parent root = FXMLLoader.load(getClass().getResource("Login_FINAL.fxml"));
@@ -47,9 +49,11 @@ public class Start extends Application {
 		loginPage.setMaximized(true);
 		loginPage.setScene(scene);
 		loginPage.show();
-
 	}
-
+	/*
+	 * called upon clicking login button : checks username, then checks encrypted password
+	 * if both check out, logs user in to home/navigation page.
+	 */
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
 		db.pullDatabase();
@@ -103,7 +107,11 @@ public class Start extends Application {
 		errorAlert.setContentText(content);
 		errorAlert.showAndWait();
 	}
-
+	/**
+	 * Logs in without username or password: limited viewing and functionality
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void guestLogin(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
@@ -116,7 +124,11 @@ public class Start extends Application {
 		window.show();
 		user = null;
 	}
-
+	/**
+	 * Basic pasword encryption from string to asci-int
+	 * @param encrypt
+	 * @return
+	 */
 	private String encrypt(String encrypt) {
 		StringBuilder sb = new StringBuilder();
 		char[] encrypter = encrypt.toCharArray();
@@ -128,7 +140,7 @@ public class Start extends Application {
 		return encrypted;
 
 	}
-
+	// displays alert after entering incorrect password
 	private void wrongPass(String header, String content) {
 		Alert confAlert = new Alert(AlertType.ERROR);
 		confAlert.setHeaderText(header);
