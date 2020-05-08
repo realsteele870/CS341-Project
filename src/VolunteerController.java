@@ -85,7 +85,7 @@ public class VolunteerController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	//display event in table view, only showing current or upcoming events
 	public void initEvents() throws SQLException {
 		Start.db.connect();
 		LocalDateTime ldt = LocalDateTime.now();
@@ -115,7 +115,7 @@ public class VolunteerController implements Initializable {
 			}
 		}
 		Start.db.disconnect();
-
+		//show event details upon mouse click of event row in table
 		eventNameList.setOnMousePressed((MouseEvent e) -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				index = eventNameList.getSelectionModel().getSelectedIndex();
@@ -127,7 +127,10 @@ public class VolunteerController implements Initializable {
 			}
 		});
 	}
-
+	/**
+	 * Display all event details in sidebar right of event table display on Volunteer page.
+	 * @throws SQLException
+	 */
 	private void showEventDetails() throws SQLException {
 		if (index < 0)
 			index = 0;
@@ -163,7 +166,10 @@ public class VolunteerController implements Initializable {
 			cancelBtn.setDisable(true);
 		}
 	}
-
+	/**
+	 * 
+	 * @return time of event start or end
+	 */
 	private String convertTimes() {
 		String time = "";
 		Event e = events.get(index);
@@ -189,11 +195,20 @@ public class VolunteerController implements Initializable {
 		}
 		return time;
 	}
-
+	/**
+	 * 
+	 * @param volNeed	: volunteers still needed for event
+	 * @param volReq	: total volunteers desired for event
+	 * @return Formatted string displaying information
+	 */
 	private String convertVols(int volNeed, int volReq) {
 		return volNeed + " / " + volReq;
 	}
-
+	/**
+	 * Adds one to the volunteer display and adds user.Id and EventId to joint table userEvent
+	 * @param event 		: Event being volunteered for
+	 * @throws SQLException
+	 */
 	public void volunteer(ActionEvent event) throws SQLException {
 
 		boolean successfulVol = true;
@@ -295,7 +310,11 @@ public class VolunteerController implements Initializable {
 			confirmSubmission("Success!", "You are signed up for the event, " + Start.user +"!");
 		}
 	}
-	
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	private int getNextId() throws SQLException {
 		Start.db.connect();
 		String query = "SELECT Max(ID) " + "FROM EventUsers";
@@ -304,7 +323,11 @@ public class VolunteerController implements Initializable {
 		Start.db.disconnect();
 		return max + 1;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	private int getNextDonationId() throws SQLException {
 		Start.db.connect();
 		String query = "SELECT Max(DonationId) " + "FROM EventDonations";
@@ -313,7 +336,12 @@ public class VolunteerController implements Initializable {
 		Start.db.disconnect();
 		return max + 1;
 	}
-	
+	/**
+	 * Allows Admin to cancel an event, which removes it form the event table,
+	 * amd removes the corresponding EventUser tuples
+	 * @param event
+	 * @throws SQLException
+	 */
 	public void cancel(ActionEvent event) throws SQLException {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Cancel Confirmation");
@@ -350,7 +378,11 @@ public class VolunteerController implements Initializable {
 			showEventDetails();
 		}
 	}
-	
+	/**
+	 * Allows any user to donate to an event or (unrestricted) to the Organization.
+	 * @param event
+	 * @throws SQLException
+	 */
 	public void donate(ActionEvent event) throws SQLException {
 		int donationAmnt = 0;
 		boolean checkDonation = true;

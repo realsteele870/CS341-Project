@@ -70,7 +70,11 @@ public class CreateEventController implements Initializable {
 		window.setTitle("Home");
 		window.show();
 	}
-
+	/**
+	 * Creates an event
+	 * @param event: Event object to be added to the event table
+	 * @throws SQLException
+	 */
 	@FXML
 	private void createEvent(ActionEvent event) throws SQLException {
 		// get info from fields
@@ -126,7 +130,11 @@ public class CreateEventController implements Initializable {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	private int getNextId() throws SQLException {
 		Start.db.connect();
 		String query = "SELECT Max(EventId) " + "FROM Event";
@@ -135,7 +143,10 @@ public class CreateEventController implements Initializable {
 		Start.db.disconnect();
 		return max + 1;
 	}
-
+	/*
+	 * Converts to Military time from string literal
+	 * @param time : start time of event
+	 */
 	public int toMilitaryTimeStart(String time) {
 		String[] times = time.split(":");
 		time = times[0]; // gives hour of time entered
@@ -159,7 +170,11 @@ public class CreateEventController implements Initializable {
 			return 0; // should never reach, but if it does -- set hour to zero
 		}
 	}
-
+	/**
+	 * Converts end time to Military time
+	 * @param time
+	 * @return
+	 */
 	public int toMilitaryTimeEnd(String time) {
 		String[] times = time.split(":");
 		time = times[0]; // gives hour of time entered
@@ -183,7 +198,10 @@ public class CreateEventController implements Initializable {
 			return 0; // should never reach, but if it does -- set hour to zero
 		}
 	}
-
+	/**
+	 * Toggles radio buttons for start time (AM or PM)
+	 * @param event
+	 */
 	public void switchRadioStart(ActionEvent event) {
 		RadioButton rb = (RadioButton) event.getSource();
 		if (rb.equals(startAmRBtn)) {
@@ -196,7 +214,10 @@ public class CreateEventController implements Initializable {
 			}
 		}
 	}
-
+	/**
+	 * Toggles radio buttons for end time (AM or PM)
+	 * @param event
+	 */
 	public void switchRadioEnd(ActionEvent event) {
 		RadioButton rb = (RadioButton) event.getSource();
 		if (rb.equals(endAmRBtn)) {
