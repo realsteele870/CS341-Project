@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -28,8 +29,18 @@ public class DashboardController implements Initializable {
 	@FXML
 	private ListView<String> eventNameList;
 	int index;
-
+	@FXML
+	private Label nameLbl;
+	@FXML
+	private Label descLbl;
+	@FXML
+	private Label locLbl;
+	@FXML
+	private Label dateLbl;
+	@FXML
+	private Label donationLbl;
 	private ObservableList<EventUsers> eventsUsers;
+	private ObservableList<EventUsers> donations;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -37,6 +48,7 @@ public class DashboardController implements Initializable {
 
 		eventsUsers = FXCollections.observableArrayList();
 		events = FXCollections.observableArrayList();
+		donations = FXCollections.observableArrayList();
 		try {
 			initEvents();
 		} catch (SQLException e) {
@@ -111,6 +123,23 @@ public class DashboardController implements Initializable {
 		Start.db.disconnect();
 		// show event details upon mouse click of event row in table
 
+		Start.db.connect();
+		query = "SELECT * FROM EventDonations";
+		results = Start.db.runQuery(query);
+		int doAmount = 0;
+		while (results.next()) {
+			int donationId = results.getInt("DonationId");
+			int eventId = results.getInt("EventId");
+			int userId = results.getInt("UserId");
+			int amount = results.getInt("Amount");
+			Donations d = new Donations(donationId, eventId, userId, amount);
+			if (userId == Start.userId) {
+				doAmount = doAmount + amount;
+			}
+		}
+		donationLbl.setText("$" + doAmount);
+
+		Start.db.disconnect();
 		eventNameList.setOnMousePressed((MouseEvent e) -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				index = eventNameList.getSelectionModel().getSelectedIndex();
@@ -125,9 +154,16 @@ public class DashboardController implements Initializable {
 	}
 
 	private void showEventDetails() throws SQLException {
-		/*
-		 * if (index < 0) index = 0; Event e = events.get(index);
-		 */
+
+		if (index < 0)
+			index = 0;
+		EventUsers ev = eventsUsers.get(index);
+		Event e = events.get(ev.EventID);
+		nameLbl.setText(e.getName());
+		descLbl.setText(e.getDescription());
+
+		locLbl.setText(e.location);
+		dateLbl.setText(e.date);
 
 	}
 
