@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
 	@FXML
+	private Button dashBtn;
+	@FXML
 	private Button createUserBtn;
 	@FXML
 	private Button logoutBtn;
@@ -35,10 +37,13 @@ public class HomeController implements Initializable {
 		if (Start.user == null) {
 			loggedInAs.setText("Guest");
 			Start.userType = "Guest";
+			dashBtn.setDisable(true);
+			dashBtn.setVisible(false);
+
 		} else {
 			loggedInAs.setText(Start.user);
 		}
-		if(!Start.userType.equals("Administrator")) {
+		if (!Start.userType.equals("Administrator")) {
 			createUserBtn.setDisable(true);
 			createUserBtn.setVisible(false);
 			createEvntBtn.setDisable(true);
@@ -47,7 +52,7 @@ public class HomeController implements Initializable {
 
 		}
 	}
-	
+
 	@FXML
 	private void createUser(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("CreateUser.fxml"));
@@ -97,7 +102,7 @@ public class HomeController implements Initializable {
 		window.setTitle("Create Event");
 		window.show();
 	}
-	
+
 	@FXML
 	private void goToAdmin(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
@@ -119,6 +124,19 @@ public class HomeController implements Initializable {
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene2);
 		window.setTitle("Login");
+		window.show();
+		Start.user = null;
+	}
+
+	@FXML
+	private void dashboard(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+		Scene scene = dashBtn.getScene(); // use button to get current scene
+		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
+																					// dimensions
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene2);
+		window.setTitle("Dashboard");
 		window.show();
 		Start.user = null;
 	}

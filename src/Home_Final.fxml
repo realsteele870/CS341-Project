@@ -50,6 +50,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="dashBtn" mnemonicParsing="false" onAction="#dashboard" prefHeight="35.0" prefWidth="125.0" text="Dashboard" />
             <Button fx:id="volunteerBtn" mnemonicParsing="false" onAction="#volunteer" prefHeight="35.0" prefWidth="125.0" text="Volunteer">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
