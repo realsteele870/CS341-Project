@@ -53,6 +53,7 @@ public class DashboardController implements Initializable {
 		eventsUsers = FXCollections.observableArrayList();
 		events = FXCollections.observableArrayList();
 		donations = FXCollections.observableArrayList();
+
 		try {
 			initEvents();
 		} catch (SQLException e) {
@@ -120,10 +121,11 @@ public class DashboardController implements Initializable {
 			EventUsers eu = new EventUsers(id, userID, eventID);
 			// String [] dataInfo = e.date.split("/");
 
-			eventsUsers.add(eu);
 			if (eu.userID == Start.userId) {
+				eventsUsers.add(eu);
 				Event e = events.get(eu.EventID);
 				eventNameList.getItems().add(e.getName());
+
 			}
 		}
 		Start.db.disconnect();
@@ -165,8 +167,10 @@ public class DashboardController implements Initializable {
 
 		if (index < 0)
 			index = 0;
+		System.out.println("INDEX: " + index);
 		EventUsers ev = eventsUsers.get(index);
 		Event e = events.get(ev.EventID);
+		System.out.println("EVENT ID: " + ev.EventID);
 		nameLbl.setText(e.getName());
 		descLbl.setText(e.getDescription());
 
