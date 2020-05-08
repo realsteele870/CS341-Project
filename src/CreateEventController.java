@@ -99,7 +99,7 @@ public class CreateEventController implements Initializable {
 			// enter event into database
 			int eventId = getNextId();
 			Start.db.connect();
-			String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO Event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt = Start.db.connection.prepareStatement(query);
 			stmt.setInt(1, eventId);
 			stmt.setString(2, name);
@@ -110,6 +110,7 @@ public class CreateEventController implements Initializable {
 			stmt.setInt(7, endHour);
 			stmt.setInt(8, vols);
 			stmt.setInt(9, 0); // initial volunteers filled is 0
+			stmt.setString(10, null);
 			stmt.executeUpdate();
 			Start.db.disconnect();
 		}
