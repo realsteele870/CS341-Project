@@ -37,8 +37,9 @@ public class Start extends Application {
 		launch(args);
 
 	}
+
 	/**
-	 *  connects to login xfml file and sets view parameters
+	 * connects to login xfml file and sets view parameters
 	 */
 	public void start(Stage loginStage) throws IOException, SQLException {
 
@@ -50,13 +51,14 @@ public class Start extends Application {
 		loginPage.setScene(scene);
 		loginPage.show();
 	}
+
 	/*
-	 * called upon clicking login button : checks username, then checks encrypted password
-	 * if both check out, logs user in to home/navigation page.
+	 * called upon clicking login button : checks username, then checks encrypted
+	 * password if both check out, logs user in to home/navigation page.
 	 */
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
-		db.pullDatabase();
+		// db.pullDatabase();
 		db.connect();
 		String userName = usernameField.getText(); // get users entered username
 		String userPass = passwordField.getText(); // get users entered password
@@ -107,8 +109,10 @@ public class Start extends Application {
 		errorAlert.setContentText(content);
 		errorAlert.showAndWait();
 	}
+
 	/**
 	 * Logs in without username or password: limited viewing and functionality
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -124,8 +128,10 @@ public class Start extends Application {
 		window.show();
 		user = null;
 	}
+
 	/**
 	 * Basic pasword encryption from string to asci-int
+	 * 
 	 * @param encrypt
 	 * @return
 	 */
@@ -140,6 +146,7 @@ public class Start extends Application {
 		return encrypted;
 
 	}
+
 	// displays alert after entering incorrect password
 	private void wrongPass(String header, String content) {
 		Alert confAlert = new Alert(AlertType.ERROR);

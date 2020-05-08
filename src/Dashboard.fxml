@@ -46,7 +46,7 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="eventNameList" prefHeight="200.0" prefWidth="200.0">
                <HBox.margin>
                   <Insets bottom="20.0" top="20.0" />
                </HBox.margin></ListView>

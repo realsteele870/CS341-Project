@@ -21,18 +21,28 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class DashboardController implements Initializable {
+
+	private ObservableList<Event> events;
 	@FXML
 	private Button homeBtn;
 	@FXML
 	private ListView<String> eventNameList;
+	int index;
 
-	private ObservableList<Event> events;
+	private ObservableList<EventUsers> eventsUsers;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
+		eventsUsers = FXCollections.observableArrayList();
 		events = FXCollections.observableArrayList();
+		try {
+			initEvents();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -67,17 +77,40 @@ public class DashboardController implements Initializable {
 
 			Event e = new Event(id, name, desc, date, loc, startTime, endTime, volNeeded, volFilled);
 			// String [] dataInfo = e.date.split("/");
-			String[] dateInfo = e.date.split("/");
-			if (Integer.parseInt(dateInfo[0]) >= ldt.getMonthValue()
-					&& Integer.parseInt(dateInfo[1]) >= ldt.getDayOfMonth()
-					&& Integer.parseInt(dateInfo[2]) >= ldt.getYear()) {
-				System.out.println(e.date);
-				events.add(e);
+			/*
+			 * String[] dateInfo = e.date.split("/"); if (Integer.parseInt(dateInfo[0]) >=
+			 * ldt.getMonthValue() && Integer.parseInt(dateInfo[1]) >= ldt.getDayOfMonth()
+			 * && Integer.parseInt(dateInfo[2]) >= ldt.getYear()) {
+			 */
+
+			events.add(e);
+
+			// }
+		}
+		Start.db.disconnect();
+
+		Start.db.connect();
+
+		query = "SELECT * FROM EventUsers";
+		results = Start.db.runQuery(query);
+
+		while (results.next()) {
+			int id = results.getInt("ID");
+			int userID = results.getInt("UserId");
+			int eventID = results.getInt("EventId");
+
+			EventUsers eu = new EventUsers(id, userID, eventID);
+			// String [] dataInfo = e.date.split("/");
+
+			eventsUsers.add(eu);
+			if (eu.userID == Start.userId) {
+				Event e = events.get(eu.EventID);
 				eventNameList.getItems().add(e.getName());
 			}
 		}
 		Start.db.disconnect();
 		// show event details upon mouse click of event row in table
+
 		eventNameList.setOnMousePressed((MouseEvent e) -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				index = eventNameList.getSelectionModel().getSelectedIndex();
@@ -88,6 +121,14 @@ public class DashboardController implements Initializable {
 				}
 			}
 		});
+
+	}
+
+	private void showEventDetails() throws SQLException {
+		/*
+		 * if (index < 0) index = 0; Event e = events.get(index);
+		 */
+
 	}
 
 }
