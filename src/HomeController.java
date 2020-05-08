@@ -32,8 +32,6 @@ public class HomeController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		viewEventBtn.setVisible(false);
-		adminBtn.setVisible(false);
-		// TODO Auto-generated method stub
 		if (Start.user == null) {
 			loggedInAs.setText("Guest");
 			Start.userType = "Guest";
@@ -45,7 +43,7 @@ public class HomeController implements Initializable {
 			createUserBtn.setVisible(false);
 			createEvntBtn.setDisable(true);
 			createEvntBtn.setVisible(false);
-			adminBtn.setVisible(true);
+			adminBtn.setVisible(false);
 
 		}
 	}
