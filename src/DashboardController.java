@@ -45,7 +45,10 @@ public class DashboardController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
+		nameLbl.setVisible(false);
+		descLbl.setVisible(false);
+		locLbl.setVisible(false);
+		dateLbl.setVisible(false);
 		eventsUsers = FXCollections.observableArrayList();
 		events = FXCollections.observableArrayList();
 		donations = FXCollections.observableArrayList();
@@ -61,7 +64,7 @@ public class DashboardController implements Initializable {
 	@FXML
 	private void home(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("Home_Final.fxml"));
-		Scene scene = homeBtn.getScene(); // use button to get current scene
+		Scene scene = descLbl.getScene(); // use button to get current scene
 		Scene scene2 = new Scene(menuParent, scene.getWidth(), scene.getHeight()); // create new scene with last scenes
 																					// dimensions
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -143,6 +146,7 @@ public class DashboardController implements Initializable {
 		eventNameList.setOnMousePressed((MouseEvent e) -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				index = eventNameList.getSelectionModel().getSelectedIndex();
+
 				try {
 					showEventDetails();
 				} catch (SQLException e1) {
@@ -165,6 +169,10 @@ public class DashboardController implements Initializable {
 		locLbl.setText(e.location);
 		dateLbl.setText(e.date);
 
+		nameLbl.setVisible(true);
+		descLbl.setVisible(true);
+		locLbl.setVisible(true);
+		dateLbl.setVisible(true);
 	}
 
 }

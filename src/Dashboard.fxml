@@ -65,15 +65,57 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="donationLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="nameLbl" text="Label" GridPane.columnIndex="1" />
-                  <Label fx:id="descLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="dateLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="locLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Donations" GridPane.rowIndex="4">
+                  <Label fx:id="donationLbl" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="nameLbl" text="Label" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="descLbl" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="dateLbl" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="locLbl" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label text="Donations:" textFill="WHITE" GridPane.rowIndex="4">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Location" textFill="WHITE" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Date: " textFill="WHITE" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Description: " textFill="WHITE" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Label>
                </children>
             </GridPane>

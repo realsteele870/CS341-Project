@@ -138,6 +138,6 @@ public class HomeController implements Initializable {
 		window.setScene(scene2);
 		window.setTitle("Dashboard");
 		window.show();
-		Start.user = null;
+
 	}
 }
