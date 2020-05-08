@@ -19,7 +19,8 @@ public class User {
 		this.userName  = uName;
 		this.password  = pWord;
 	}
-	public User(String fName, String lName, String uType, String uName, String pWord, String dDate) {
+	public User(int i, String fName, String lName, String uType, String uName, String pWord, String dDate) {
+		this.id = i;
 		this.firstName = fName;
 		this.lastName = lName;
 		this.userType = uType;
@@ -56,6 +57,12 @@ public class User {
 	}
 	void setPassword(String pWord) {
 		this.password = pWord;
+	}
+	String getDeacDate() {
+		return this.deacDate;
+	}
+	int getId() {
+		return id;
 	}
 	
 }
