@@ -96,7 +96,11 @@ public class AdminController implements Initializable {
 		}
 
 	}
-	
+	/*
+	 * Gets all users and events from database and loads them into tabs 
+	 * 
+	 * Initializes data to be ready for viewing
+	 */
 	public void init() throws SQLException {
 		Start.db.connect();
 	
@@ -152,7 +156,9 @@ public class AdminController implements Initializable {
 		
 	
 	}
-	
+	/*
+	 * When clicking on a user in the volunteer list, shows all details for that user
+	 */
 	public void showUserDetails() {
 		infoPane.setVisible(true);
 		summPane.setVisible(false);
@@ -183,6 +189,9 @@ public class AdminController implements Initializable {
 		dateResult.setVisible(false);
 	}
 	
+	/*
+	 * When clicking on an event in the event list, shows all event details
+	 */
 	public void showEventDetails() {
 		infoPane.setVisible(true);
 		summPane.setVisible(false);
@@ -214,6 +223,14 @@ public class AdminController implements Initializable {
 		
 	}
 	
+	/**
+	 * Executes three queries whether it was an action for a user or an event
+	 * for summaries of total hours, total donations per event, and total donations to 
+	 * the organization
+	 * 
+	 * @param button click on user summary button
+	 * @throws SQLException
+	 */
 	@FXML
 	private void showUserSummary(ActionEvent e) throws SQLException {
 		Start.db.connect();
@@ -334,6 +351,13 @@ public class AdminController implements Initializable {
 		summPane.setVisible(true);	
 	}
 	
+	/**
+	 * Cancels and event and sets the date cancelled or deletes a user and sets the 
+	 * date deleted while keeping user in the database 
+	 * 
+	 * @param event - button click for cancelling or deleting a user or event
+	 * @throws SQLException
+	 */
 	@FXML
 	private void cancel(ActionEvent event) throws SQLException {
 		Start.db.connect();
